@@ -41,6 +41,34 @@
 				<span>Soletron</span>
 			<% end %>
 		</div>
+		<div id="primary-navigation">
+			<ul>
+				<li class="deactivated">
+					<a href="javascript:void(0)" title="Coming Soon">buy</a>
+				</li>
+				<li class="deactivated">
+					<a href="javascript:void(0)" title="Coming Soon">sell</a>
+				</li>
+				<li class="deactivated">
+					<a href="javascript:void(0)" title="Coming Soon">community</a>
+				</li>
+				<li class="current-menu-item">
+					<%= link_to "blog", root_url, :title => "Soletron" %>
+				</li>
+			</ul>
+		</div>
+		<div id="search-container">
+			<div id="search-legend">BLOG</div>
+			<form role="search" method="get" id="searchform" action="">
+				<input type="text" value="SEARCH" name="s" id="s"/>
+				<input type="submit" id="searchsubmit" value>
+			</form>
+		</div>
+		<div id="secondary-navigation" class="menu-secondary-container">
+			<ul id="menu-secondary" class="menu">
+			</ul>
+		</div>
+		
 	</div>
 
 	<div id="template-container">

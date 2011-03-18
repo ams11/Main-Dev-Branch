@@ -1,5 +1,7 @@
 V2::Application.routes.draw do
 
+  get "users/index"
+
   match 'signin' => 'user_sessions#new', :as => :signin
   match 'signout' => 'user_sessions#destroy', :as => :signout 
 

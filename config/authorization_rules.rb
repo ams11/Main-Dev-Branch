@@ -15,6 +15,6 @@ authorization do
 	end
 	role :admin do
 		has_permission_on :pages, :to => [:home, :visitor, :member, :merchant, :admin]
-		has_permission_on :users, :to => [:new, :create, :edit, :update]
+		has_permission_on :users, :to => [:destroy, :index, :new, :create, :edit, :update]
 	end
 end
