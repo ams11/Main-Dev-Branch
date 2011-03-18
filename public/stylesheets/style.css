@@ -25,7 +25,7 @@ body{
 	padding: 0px;
 	color: #353535;
 	font-family: Arial, Tahoma, Sans-Serif;
-	background: url('images/body-background.jpg') repeat;
+	background: url('/images/body-background.jpg') repeat;
 }
 
 .alignleft{
@@ -55,7 +55,7 @@ img{
 	display: block;
 	width: 100%;
 	height: 668px;
-	background: url('images/body-header-background.jpg') repeat-x;
+	background: url('/images/body-header-background.jpg') repeat-x;
 }
 
 	#main-container{
@@ -155,7 +155,7 @@ a:hover{
 		margin: 0px 0px 6px 27px;
 		border: none;
 		text-decoration: none;
-		background: url('images/logo.png') no-repeat;
+		background: url('/images/logo.png') no-repeat;
 	}
 	
 		#header-container #logo a span{

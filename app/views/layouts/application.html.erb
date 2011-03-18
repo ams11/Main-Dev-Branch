@@ -4,6 +4,7 @@
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "style" %>
+    <%= stylesheet_link_tag "overrides" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
@@ -12,32 +13,47 @@
     <div id="body-header">
     <div id="main-container">
     <div id="main-container-float">
-
-		<div id="header_logo">
-			<%= link_to image_tag ("logo.jpg", :alt => "Soletron Logo"), root_url %>
+	
+	<div id="header-container">
+		<div id="header-topnav">
+			<div id="header-topnav-left">
+				<% if current_user %>
+					<%= link_to "Logout", signout_path %> |
+					<%= link_to "Edit Profile", edit_user_path(:current) %>
+					<%  if permitted_to? :merchant %>
+						| <%= link_to "Merchant Portal", pages_merchant_path %>
+					<% end %>
+					<%  if permitted_to? :admin %>
+						| <%= link_to "Admin Portal", pages_admin_path %>
+					<% end %>
+				<% else %>
+					<%= link_to "Login", signin_path %> |
+					<%= link_to "Register", new_user_path %>
+				<% end %>
+			</div>
+			<div id="header-topnav-right">
+				<%= link_to "MyCart", root_url %>
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div id="user_nav">
-			<% if current_user %>
-				<%  if permitted_to? :admin %>
-					<%= link_to "Admin Portal", pages_admin_path %> |
-				<% end %>
-				<%  if permitted_to? :merchant %>
-					<%= link_to "Merchant Portal", pages_merchant_path %> |
-				<% end %>
-				<%= link_to "Edit Profile", edit_user_path(:current) %> |
-				<%= link_to "Sign Out", signout_path %>
-			<% else %>
-				<%= link_to "Sign Up", new_user_path %> |
-				<%= link_to "Sign In", signin_path %>
+		<div id="logo">
+			<%= link_to root_url, :title => "Soletron" do %>
+				<span>Soletron</span>
 			<% end %>
 		</div>
-		<div class="clear"></div>
-	  
+	</div>
+
+	<div id="template-container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
+    </div>
+
+	<div id="footer-container">
+    </div>
+
     </div>
     </div>
     </div>

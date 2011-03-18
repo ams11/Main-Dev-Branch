@@ -1,0 +1,33 @@
+
+#header-topnav {
+	height: 16px;
+	padding: 8px 0px 11px 0px;
+	font-size: .8em;
+	color: white;
+	margin: 0px 20px 0px 20px;
+}
+
+#header-topnav a {
+	color: white;
+	font-style: normal;
+	text-decoration: none;
+}
+
+#header-topnav a:hover {
+	color: #5fbb30;
+}
+
+#header-topnav-left {
+	float: left;
+}
+
+#header-topnav-right {
+	float: right;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+

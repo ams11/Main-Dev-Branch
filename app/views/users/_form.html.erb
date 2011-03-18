@@ -16,9 +16,13 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </p>
+
   <p>
     <%= f.label :roles %><br />
     <%= f.select :roles, (controller.authorization_engine.roles + (@user.roles || [])).uniq, {}, {:multiple => true} %>
   </p>
+  <% if permitted_to? :admin %>
+  <% end %>
+  
   <p><%= f.submit %></p>
 <% end %>
