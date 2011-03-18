@@ -11,6 +11,7 @@ gem 'nifty-generators'
 gem 'authlogic'
 gem 'annotate-models'
 gem 'mocha'
+gem 'declarative_authorization'
 
 # Use unicorn as the web server
 # gem 'unicorn'

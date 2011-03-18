@@ -1,5 +1,13 @@
 V2::Application.routes.draw do
 
+  get "pages/visitor"
+
+  get "pages/member"
+
+  get "pages/merchant"
+
+  get "pages/admin"
+
   match 'signin' => 'user_sessions#new', :as => :signin
   match 'signout' => 'user_sessions#destroy', :as => :signout 
 
@@ -8,11 +16,6 @@ V2::Application.routes.draw do
 
   get "pages/home"
   root :to => "pages#home"
-  
-  get "pages/visitor"
-  get "pages/member"
-  get "pages/merchant"
-  get "pages/admin"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

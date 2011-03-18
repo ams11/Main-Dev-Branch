@@ -1,2 +1,15 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<p>
+	<%= link_to "Visitor", pages_visitor_path %>
+	<%  if permitted_to? [:member,:merchant,:admin] %>
+		| <%= link_to "Member", pages_member_path %>
+	<% end %>
+	<%  if permitted_to? [:merchant,:admin] %>
+		| <%= link_to "Merchant", pages_merchant_path %>
+	<% end %>
+	<%  if permitted_to? :admin %>
+		| <%= link_to "Admin", pages_admin_path %>
+	<% end %>
+</p>
