@@ -24,11 +24,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+	if has_role? :admin and params[:id] != "current"
+		@user = User.find(params[:id])
+	else
+		@user = current_user
+	end
   end
 
   def update
-    @user = current_user
+	if has_role? :admin and params[:id] != "current"
+		@user = User.find(params[:id])
+	else
+		@user = current_user
+	end
     if @user.update_attributes(params[:user])
       redirect_to root_url, :notice  => "Successfully updated profile."
     else

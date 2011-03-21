@@ -12,6 +12,9 @@ gem 'authlogic'
 gem 'annotate-models'
 gem 'mocha'
 gem 'declarative_authorization'
+gem 'haml'
+gem 'haml-rails'
+gem 'ruby_parser'
 
 # Use unicorn as the web server
 # gem 'unicorn'

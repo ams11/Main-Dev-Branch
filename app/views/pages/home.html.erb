@@ -1,6 +1,8 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
+<%= render 'users/showroles' %>
+
 <p>
 	<%= link_to "Visitor", pages_visitor_path %>
 	<%  if permitted_to? [:member,:merchant,:admin] %>

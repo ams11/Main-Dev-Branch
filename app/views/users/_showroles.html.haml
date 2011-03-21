@@ -1,0 +1,24 @@
+
+%div
+	Authorization.current_user: 
+	= if (defined? Authorization.current_user.username) then Authorization.current_user.username else "nil" end
+	%br/
+	Guest permitted:
+	= has_role? :guest
+	= "OK" if permitted_to? :guest
+	%br/ 
+	Visitor permitted: 
+	= has_role? :visitor
+	= "OK" if permitted_to? :visitor
+	%br/ 
+	Member permitted: 
+	= has_role? :member
+	= "OK" if permitted_to? :member
+	%br/ 
+	Merchant permitted: 
+	= has_role? :merchant
+	= "OK" if permitted_to? :merchant
+	%br/ 
+	Admin permitted: 
+	= has_role? :admin
+	= "OK" if permitted_to? :admin

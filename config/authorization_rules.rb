@@ -1,6 +1,7 @@
 authorization do
 	role :guest do
 		has_permission_on :pages, :to => [:home, :visitor]
+		has_permission_on :users, :to => [:new, :create]
 	end
 	role :visitor do
 		has_permission_on :pages, :to => [:home, :visitor]
@@ -16,5 +17,6 @@ authorization do
 	role :admin do
 		has_permission_on :pages, :to => [:home, :visitor, :member, :merchant, :admin]
 		has_permission_on :users, :to => [:destroy, :index, :new, :create, :edit, :update]
+		has_permission_on :authorization_rules, :to => :read
 	end
 end
