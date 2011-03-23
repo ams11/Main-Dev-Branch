@@ -7,6 +7,7 @@ V2::Application.routes.draw do
 
   resources :user_sessions
   resources :users
+  resources :merchant_products
 
   get "pages/home"
   root :to => "pages#home"

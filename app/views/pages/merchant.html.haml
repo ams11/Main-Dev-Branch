@@ -1,4 +1,13 @@
 %h1 Pages#merchant
 %p Find me in app/views/pages/merchant.html.haml
-%p= 'shopify_api_key = ' + APP_CONFIG['shopify_api_key']
-%p= 'shopify_password = ' + APP_CONFIG['shopify_password']
+
+%p
+  = link_to "List Products", merchant_products_path
+  = link_to "New Product", new_merchant_product_path
+
+%p
+  = 'shopify_store_url = ' + APP_CONFIG['shopify_store_url']
+  %br/
+  = 'shopify_api_key = ' + APP_CONFIG['shopify_api_key']
+  %br/
+  = 'shopify_password = ' + APP_CONFIG['shopify_password']

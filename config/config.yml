@@ -1,12 +1,15 @@
 
 development:
+  shopify_store_url: soletron.myshopify.com
   shopify_api_key: d963d21dd5b552733730ef383c77f126
   shopify_password: c1370605f6e060b2c420839106a7dc50  
 
 test:
+  shopify_store_url: soletron.myshopify.com
   shopify_api_key: d963d21dd5b552733730ef383c77f126
   shopify_password: c1370605f6e060b2c420839106a7dc50  
 
 production:
+  shopify_store_url: soletron.myshopify.com
   shopify_api_key: d963d21dd5b552733730ef383c77f126
   shopify_password: c1370605f6e060b2c420839106a7dc50  
