@@ -16,6 +16,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+	if @user.roles.nil?
+		@user.roles = [:member];
+	elsif @user.roles.size == 0
+		@user.roles.push(:member)
+	end
     if @user.save
       redirect_to root_url, :notice => "Sign Up successful."
     else

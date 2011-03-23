@@ -22,7 +22,16 @@
 		<%= f.label :roles %><br />
 		<%= f.select :roles, controller.authorization_engine.roles, {}, {:multiple => false} %>
 	  </p>
+	  
+	  <p>
+		<%= f.label :shopify_product_vendor %><br />
+		<%= f.text_field :shopify_product_vendor %>
+	  </p>
   <% end %>
   
+  <% if has_role? :merchant %>
+	<h2>Merchant Info Below</h2>
+  <% end %>
+
   <p><%= f.submit %></p>
 <% end %>
