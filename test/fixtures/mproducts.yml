@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_type: MyString
+  title: MyString
+  body_html: MyString
+  vendor: MyString
+
+two:
+  product_type: MyString
+  title: MyString
+  body_html: MyString
+  vendor: MyString
