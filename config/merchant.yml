@@ -1,0 +1,24 @@
+
+product_types:
+  -
+    product_type: Hats
+    commission_percent: 25.00
+  -
+    product_type: Tops
+    commission_percent: 40.00
+  -
+    product_type: Bottoms
+    commission_percent: 30.00
+  -
+    product_type: Footwear
+    commission_percent: 10.00
+  -
+    product_type: Accessories/Other
+    commission_percent: 30.00
+  -
+    product_type: Art, Toys & Electronics
+    commission_percent: 25.00
+ 
+ 
+ 
+    
