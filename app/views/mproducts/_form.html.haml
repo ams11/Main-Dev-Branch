@@ -8,7 +8,7 @@
 
   .field
     = f.label :product_type
-    = f.text_field :product_type
+    = select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
   .field
     = f.label :title
     = f.text_field :title
@@ -19,4 +19,4 @@
     = f.label :vendor
     = f.text_field :vendor
   .actions
-    = f.submit 'Save'
+    = f.submit

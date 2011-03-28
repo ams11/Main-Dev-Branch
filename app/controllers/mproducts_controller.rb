@@ -1,9 +1,10 @@
 class MproductsController < ApplicationController
+  filter_access_to :all
+
   # GET /mproducts
   # GET /mproducts.xml
   def index
-    #@mproducts = Mproduct.all
-    @mproducts = []
+    @mproducts = Mproduct.new(:vendor => current_user.shopify_product_vendor).find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,8 +15,7 @@ class MproductsController < ApplicationController
   # GET /mproducts/1
   # GET /mproducts/1.xml
   def show
-    #@mproduct = Mproduct.find(params[:id])
-    @mproduct = nil
+    @mproduct = Mproduct.new(:vendor => current_user.shopify_product_vendor).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,8 +36,12 @@ class MproductsController < ApplicationController
 
   # GET /mproducts/1/edit
   def edit
-    #@mproduct = Mproduct.find(params[:id])
-    @mproduct = nil
+    @mproduct = Mproduct.new(:vendor => current_user.shopify_product_vendor).load(params[:id])
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.xml  { render :xml => @mproduct }
+    end
   end
 
   # POST /mproducts

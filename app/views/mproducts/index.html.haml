@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th Id
     %th Product type
     %th Title
     %th Body html
@@ -12,13 +13,14 @@
 
   - @mproducts.each do |mproduct|
     %tr
+      %td= mproduct.id
       %td= mproduct.product_type
       %td= mproduct.title
       %td= mproduct.body_html
       %td= mproduct.vendor
-      %td= link_to 'Show', mproduct
+      %td= link_to 'Show', mproduct_path(mproduct)
       %td= link_to 'Edit', edit_mproduct_path(mproduct)
-      %td= link_to 'Destroy', mproduct, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', mproduct_path(mproduct), :confirm => 'Are you sure?', :method => :delete
 
 %br
 
