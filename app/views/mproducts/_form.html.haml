@@ -26,6 +26,30 @@
         %td= f.text_area :body_html, :size => "50x3"
     %tr
       .field
+        %td= f.label :color
+        %td= select("mproduct", "color", MERCHANT_CONFIG['product_tags']['color'].collect {|x| x[0]}, {}, {:multiple => 'multiple'})
+    %tr
+      .field
+        %td= f.label :gender
+        %td= select("mproduct", "gender", MERCHANT_CONFIG['product_tags']['gender'])
+    %tr
+      .field
+        %td= f.label :brand
+        %td= select("mproduct", "brand", MERCHANT_CONFIG['product_tags']['brand'].clone.insert(0,'').insert(0,current_user.username))
+    %tr
+      .field
+        %td= f.label :onsale
+        %td= select("mproduct", "onsale", MERCHANT_CONFIG['product_tags']['onsale'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
+        %td= f.label :collectible
+        %td= select("mproduct", "collectible", MERCHANT_CONFIG['product_tags']['collectible'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
+        %td= f.label :custom
+        %td= select("mproduct", "custom", MERCHANT_CONFIG['product_tags']['custom'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
         %td= f.label :vendor
         %td= f.text_field :vendor, options = {:readonly => "readonly"}
     %tr
