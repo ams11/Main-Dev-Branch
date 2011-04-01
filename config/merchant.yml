@@ -3,22 +3,202 @@ product_types:
   -
     product_type: Hats
     commission_percent: 25.00
+    product_categories:
+      - Fitted
+      - Snapbacks
+      - Stretch
+      - Beanies
+      - Custom hats
+    sizes:
+      - 'S'
+      - 'M'
+      - 'L'
+      - 'XL'
+      - 'XXL'
+      - 'XXXL'
+      - '6 5/8'
+      - '6 3/4'
+      - '6 7/8'
+      - '6'
+      - '7 1/4'
+      - '7 3/8'
+      - '7 1/2'
+      - '7 5/8'
+      - '7 3/4'
+      - '7 7/8'
+      - '8'
+      - '8 1/8'
+      - '8 1/4'
+      - '8 3/8'
+      - '8 1/2'
   -
     product_type: Tops
     commission_percent: 40.00
+    product_categories:
+      - Tees
+      - Long sleeves
+      - Button ups
+      - Polos
+      - Hoodies
+      - Sweaters
+      - Jackets
+    sizes:
+      - '2XS'
+      - 'XS'
+      - 'S'
+      - 'M'
+      - 'L'
+      - '2XL'
+      - '3XL'
+      - '4XL'
+      - '5XL'
   -
     product_type: Bottoms
     commission_percent: 30.00
+    product_categories:
+      - Pants
+      - Shorts
+      - Underwear
+    sizes:
+      - '26W'
+      - '28W'
+      - '29W'
+      - '30W'
+      - '31W'
+      - '32W'
+      - '33W'
+      - '34W'
+      - '36W'
+      - '38W'
+      - '40W'
+      - '42W'
+      - '44W'
+      - 'XS'
+      - 'S'
+      - 'M'
+      - 'L'
+      - 'XL'
+      - '2XL'
+      - '3XL'
   -
     product_type: Footwear
     commission_percent: 10.00
+    product_categories:
+      - Sneakers
+      - Boots
+      - Sandals
+      - Slippers
+      - Custom sneakers
+    sizes:
+      - '6'
+      - '6.5'
+      - '7'
+      - '7.5'
+      - '8'
+      - '8.5'
+      - '9'
+      - '9.5'
+      - '10'
+      - '10.5'
+      - '11'
+      - '11.5'
+      - '12'
+      - '12.5'
+      - '13'
+      - '13.5'
+      - '14'
+      - '14.5'
+      - '15'
+      - '15.5'
+      - '16'
+      - 'Shaq'
   -
     product_type: Accessories/Other
     commission_percent: 30.00
+    product_categories:
+      - Watches
+      - Sunglasses
+      - Bags
+      - Socks
+      - Belts
+      - Jewelry
+      - Wallets
+      - Scarves
+      - Sneaker products (laces, cleaners)
+    sizes:
+      - ''
+      - 'XS'
+      - 'S'
+      - 'M'
+      - 'L'
+      - '2XL'
+      - '26W'
+      - '28W'
+      - '29W'
+      - '30W'
+      - '31W'
+      - '32W'
+      - '33W'
+      - '34W'
+      - '36W'
+      - '38W'
+      - '40W'
+      - '42W'
+      - '44W'
+      - 'XS'
+      - 'S'
+      - 'M'
+      - 'L'
+      - 'XL'
+      - '2XL'
+      - '3XL'
   -
-    product_type: Art, Toys & Electronics
+    product_type: 'Art/Toys/Electronics'
     commission_percent: 25.00
+    product_categories:
+      - Art
+      - Toys
+      - Headphones
+      - Cases
+    sizes:
  
- 
- 
-    
+product_tags:
+  -
+   gender:
+    - Mens
+    - Womens
+    - Childs
+    - All
+  -
+    color:
+      - 
+        - red
+        - '#ff0000'  
+      - 
+        - green
+        - '#00ff00'
+      - 
+        - blue
+        - '#0000ff'
+      - 
+        - white
+        - '#ffffff'
+      - 
+        - black
+        - '#000000'
+  -
+    brand:
+      - Puma
+      - Nike
+  -
+    sale:
+      - yes
+      - no
+  -
+    collectible:
+      - yes
+      - no
+  -
+    custom:
+      - yes
+      - no

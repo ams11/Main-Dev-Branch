@@ -1,0 +1,25 @@
+= form_for @sproduct do |f|
+  -if @sproduct.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sproduct.errors.count, "error")} prohibited this sproduct from being saved:"
+      %ul
+        - @sproduct.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :id
+    = f.text_field :id
+  .field
+    = f.label :vendor
+    = f.text_field :vendor
+  .field
+    = f.label :product_type
+    = f.text_field :product_type
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :body_html
+    = f.text_field :body_html
+  .actions
+    = f.submit 'Save'

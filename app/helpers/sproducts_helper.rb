@@ -1,0 +1,2 @@
+module SproductsHelper
+end

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Id:
+  = @sproduct.id
+%p
+  %b Vendor:
+  = @sproduct.vendor
+%p
+  %b Product type:
+  = @sproduct.product_type
+%p
+  %b Title:
+  = @sproduct.title
+%p
+  %b Body html:
+  = @sproduct.body_html
+
+= link_to 'Edit', edit_sproduct_path(@sproduct)
+\|
+= link_to 'Back', sproducts_path
