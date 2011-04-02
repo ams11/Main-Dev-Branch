@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+puts 'Create default admin user: admin/password.  Change the password!'
+User.find_or_create_by_username('admin', { :email => 'info@soletron.com', :password => 'password', :password_confirmation => 'password', :roles => [ 'admin' ] })

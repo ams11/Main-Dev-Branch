@@ -1,7 +1,5 @@
 V2::Application.routes.draw do
 
-  resources :sproducts
-
   get "users/index"
 
   match 'signin' => 'user_sessions#new', :as => :signin
