@@ -1,3 +1,12 @@
+
+- content_for :head do
+  = stylesheet_link_tag 'white/jquery-ui-1.8.11.custom.css'
+  = javascript_include_tag 'white/jquery-ui-1.8.11.custom.min.js'
+  :javascript
+    $(function() {
+      $('#tabs').tabs();
+    })
+
 %h1 Pages#merchant
 %p Find me in app/views/pages/merchant.html.haml
 
@@ -13,6 +22,22 @@
     %br/
     = 'shopify_password = ' + APP_CONFIG['shopify_password']
 
+
+%script
+  document.write('<p>jQuery version = ' + $().jquery + '</p>');
+  document.write('<p>jQuery UI version = ' + $.ui.version + '</p>');
+
+%p  
+  %h2.demoHeaders Tabs
+  %div#tabs
+    %ul
+      <li><a href="#tabs-1">First</a></li>
+      <li><a href="#tabs-2">Second</a></li>
+      <li><a href="#tabs-3">Third</a></li>
+    <div id="tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+    <div id="tabs-2">Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.</div>
+    <div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+    
 %p
   = 'product_types.size = ' + MERCHANT_CONFIG['product_types'].size.to_s
 

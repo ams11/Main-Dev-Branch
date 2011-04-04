@@ -16,6 +16,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'ruby_parser'
 gem 'shopify_api'
+gem 'jquery-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'

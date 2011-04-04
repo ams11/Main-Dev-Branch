@@ -1,3 +1,53 @@
+- content_for :head do
+  :javascript
+    $(function() {
+      var initial_product_type = $('#mproduct_product_type option:selected').val();
+      //alert('initial_product_type = ' + initial_product_type);
+
+      $('select[id^="pc-"]').change(function() {
+        //alert('product_category changed to ' + $(this).val());
+        $('#mproduct_product_category').val($(this).val())
+      });
+
+      showCategory(initial_product_type);
+
+      $('#mproduct_product_type').change(function() {
+        //alert('product_type changed to ' + $(this).val());
+        showCategory($(this).val());
+      });
+    });
+
+    function showCategory(pt) {
+      $('select[id^="pc-"]').hide();
+      $('select[id$="' + pt + '"]').show();
+      setSelectedCategory(pt);
+    }
+    
+    function setSelectedCategory(pt) {
+      //alert('setSelectedCategory = ' + pt);
+      //alert('selectedCategory = ' + $('#mproduct_product_category').val());
+
+      var selector = 'select[id$="' + pt + '"]';
+      var valueSelector = 'option[value="' + $('#mproduct_product_category').val() + '"]';
+      var index0Selector = 'option:first';
+
+      //alert('selector = ' + selector);
+      //alert('valueSelector = ' + valueSelector);
+      //alert('index0Selector = ' + index0Selector);
+      
+      $(selector).removeAttr('selected');
+
+      if ( $(selector).is(valueSelector) ) {
+        //alert('option found')
+        $(selector + ' ' + valueSelector).attr('selected','selected');
+        $('#mproduct_product_category').val($(selector + ' ' + valueSelector).val())
+       }
+       else {
+        //alert('option not found');
+        $(selector + ' ' + index0Selector).attr('selected','selected');
+        $('#mproduct_product_category').val($(selector + ' ' + index0Selector).val())
+      }
+    }
 
 = form_for @mproduct do |f|
   -if @mproduct.errors.any?
@@ -16,6 +66,14 @@
       .field
         %td= f.label :product_type
         %td= select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
+    %tr
+      .field
+        %td= f.label :product_category
+        %td
+          = f.hidden_field :product_category
+          - MERCHANT_CONFIG['product_types'].each do |pt|
+            %select{:id => "pc-#{pt['product_type']}", :style => "display:none"}
+              = options_for_select(pt['product_categories'])
     %tr
       .field
         %td= f.label :title
