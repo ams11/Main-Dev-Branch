@@ -11,7 +11,6 @@ class MproductsController < ApplicationController
   # GET /mproducts.xml
   def index
     @mproducts = ShopifyAPI::Product.find(:all, :params => { :vendor => current_user.shopify_product_vendor })
-    #mproducts = Mproduct.find(:all, :params => { :vendor => current_user.shopify_product_vendor })
     
     respond_to do |format|
       format.html # index.html.erb
@@ -43,16 +42,18 @@ class MproductsController < ApplicationController
 
   # GET /mproducts/1/edit
   def edit
-    @mproduct = ShopifyAPI::Product.find(params[:id], :params => { :vendor => current_user.shopify_product_vendor })
+    @mproduct = Mproduct.new.find(params[:id], current_user.shopify_product_vendor)
   end
 
   # POST /mproducts
   # POST /mproducts.xml
   def create
     @mproduct = Mproduct.new(params[:mproduct])
-
+    newp = @mproduct.save
+    Mproduct.add_product_to_custom_collection(@mproduct.id, "#{@mproduct.product_type}-#{@mproduct.product_category}") if newp
+    
     respond_to do |format|
-      if @mproduct.save
+      if newp
         format.html { redirect_to(mproducts_path, :notice => 'Mproduct was successfully created.') }
         format.xml  { render :xml => @mproduct, :status => :created, :location => @mproduct }
       else

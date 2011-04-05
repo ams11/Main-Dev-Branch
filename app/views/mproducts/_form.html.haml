@@ -49,6 +49,8 @@
       }
     }
 
+%p= "current_action = #{@current_action}"
+    
 = form_for @mproduct do |f|
   -if @mproduct.errors.any?
     #error_explanation
@@ -65,7 +67,11 @@
     %tr
       .field
         %td= f.label :product_type
-        %td= select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
+        %td
+          - if @current_action == "new"
+            = select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
+          - else
+            = f.text_field :product_category, options = {:readonly => "readonly"}
     %tr
       .field
         %td= f.label :product_category

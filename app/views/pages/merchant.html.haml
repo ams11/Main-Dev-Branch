@@ -22,6 +22,10 @@
     %br/
     = 'shopify_password = ' + APP_CONFIG['shopify_password']
 
+%p= "Number of smart collections = #{Mproduct.smart_collections}"
+%p= "Number of custom collections = #{Mproduct.custom_collections}"
+%p= "Number of custom collections with title Hats-Snapbacks = #{Mproduct.custom_collection('Hats-Snapbacks')}"
+%p= "Find or create custom collection with title Hats-Snapbacks = #{Mproduct.find_or_create_custom_collection('Hats-Snapbacks')}"
 
 %script
   document.write('<p>jQuery version = ' + $().jquery + '</p>');

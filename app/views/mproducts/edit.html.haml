@@ -1,29 +1,30 @@
 %h1 Editing mproduct
 
-%p
-  = form_tag :action => 'update', :id => @mproduct
-  %p
-    = hidden_field_tag '_method', 'put'
-    = label_tag 'id'
-    = text_field("mproduct", "id", { 'readonly' => 'readonly' })
-    %br/
-    = label_tag 'product_type'
-    = select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
-    %br/
-    = label_tag 'title'
-    = text_field("mproduct", "title", {})
-    %br/
-    = label_tag 'body_html'
-    = text_field("mproduct", "body_html", {})
-    %br/
-    = label_tag 'vendor'
-    = text_field("mproduct", "vendor", { 'readonly' => 'readonly' })
-    %br/
-    = submit_tag 'Update product'
-  
 -# 
-  = render 'form'
+  %p
+    = form_tag :action => 'update', :id => @mproduct
+    %p
+      = hidden_field_tag '_method', 'put'
+      = label_tag 'id'
+      = text_field("mproduct", "id", { 'readonly' => 'readonly' })
+      %br/
+      = label_tag 'product_type'
+      = select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
+      %br/
+      = label_tag 'title'
+      = text_field("mproduct", "title", {})
+      %br/
+      = label_tag 'body_html'
+      = text_field("mproduct", "body_html", {})
+      %br/
+      = label_tag 'vendor'
+      = text_field("mproduct", "vendor", { 'readonly' => 'readonly' })
+      %br/
+      = submit_tag 'Update product'
+  
+= render 'form'
 
+-#
   = link_to 'Show', @mproduct
   \|
   = link_to 'Back', mproducts_path
