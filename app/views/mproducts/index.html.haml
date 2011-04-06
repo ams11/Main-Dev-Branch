@@ -5,7 +5,7 @@
     %th Id
     %th Product type
     %th Title
-    %th Body html
+    -#%th Body html
     %th Vendor
     %th
     %th
@@ -16,7 +16,7 @@
       %td= mproduct.id
       %td= mproduct.product_type
       %td= mproduct.title
-      %td= mproduct.body_html
+      -#%td= mproduct.body_html
       %td= mproduct.vendor
       %td= link_to 'Show', mproduct_path(mproduct)
       %td= link_to 'Edit', edit_mproduct_path(mproduct)

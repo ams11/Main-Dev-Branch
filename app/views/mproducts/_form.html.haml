@@ -1,18 +1,19 @@
 - content_for :head do
   :javascript
     $(function() {
+    
+      var action = $("#current_action").attr("action");
+      
       var initial_product_type = $('#mproduct_product_type option:selected').val();
-      //alert('initial_product_type = ' + initial_product_type);
 
       $('select[id^="pc-"]').change(function() {
-        //alert('product_category changed to ' + $(this).val());
         $('#mproduct_product_category').val($(this).val())
       });
 
-      showCategory(initial_product_type);
+      if (action == "new")
+        showCategory(initial_product_type);
 
       $('#mproduct_product_type').change(function() {
-        //alert('product_type changed to ' + $(this).val());
         showCategory($(this).val());
       });
     });
@@ -24,17 +25,10 @@
     }
     
     function setSelectedCategory(pt) {
-      //alert('setSelectedCategory = ' + pt);
-      //alert('selectedCategory = ' + $('#mproduct_product_category').val());
-
       var selector = 'select[id$="' + pt + '"]';
       var valueSelector = 'option[value="' + $('#mproduct_product_category').val() + '"]';
       var index0Selector = 'option:first';
 
-      //alert('selector = ' + selector);
-      //alert('valueSelector = ' + valueSelector);
-      //alert('index0Selector = ' + index0Selector);
-      
       $(selector).removeAttr('selected');
 
       if ( $(selector).is(valueSelector) ) {
@@ -49,7 +43,7 @@
       }
     }
 
-%p= "current_action = #{@current_action}"
+%div{:id => "current_action", :action => @current_action, :style => "display:none"}
     
 = form_for @mproduct do |f|
   -if @mproduct.errors.any?
@@ -63,7 +57,7 @@
     %tr
       .field
         %td= f.label :id
-        %td= f.text_field :id, options = {:readonly => "readonly"}
+        %td= f.text_field :id, options = {:disabled => "disabled"}
     %tr
       .field
         %td= f.label :product_type
@@ -71,15 +65,18 @@
           - if @current_action == "new"
             = select("mproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
           - else
-            = f.text_field :product_category, options = {:readonly => "readonly"}
+            = f.text_field :product_type, options = {:disabled => "disabled"}
     %tr
       .field
         %td= f.label :product_category
         %td
-          = f.hidden_field :product_category
-          - MERCHANT_CONFIG['product_types'].each do |pt|
-            %select{:id => "pc-#{pt['product_type']}", :style => "display:none"}
-              = options_for_select(pt['product_categories'])
+          - if @current_action == "new"
+            = f.hidden_field :product_category
+            - MERCHANT_CONFIG['product_types'].each do |pt|
+              %select{:id => "pc-#{pt['product_type']}", :style => "display:none"}
+                = options_for_select(pt['product_categories'])
+          - else
+            = f.text_field :product_category, options = {:disabled => "disabled"}
     %tr
       .field
         %td= f.label :title
@@ -91,7 +88,7 @@
     %tr
       .field
         %td= f.label :color
-        %td= select("mproduct", "color", MERCHANT_CONFIG['product_tags']['color'].collect {|x| x[0]}, {}, {:multiple => 'multiple'})
+        %td= select("mproduct", "color", MERCHANT_CONFIG['product_tags']['color'].collect {|x| x[0].capitalize})
     %tr
       .field
         %td= f.label :gender

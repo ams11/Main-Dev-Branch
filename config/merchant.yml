@@ -188,11 +188,16 @@ product_tags:
   - Puma
   - Nike
   onsale:
-  - false
-  - true
+  - False
+  - True
   collectible:
-  - false
-  - true
+  - False
+  - True
   custom:
-  - false
-  - true
+  - False
+  - True
+
+constraints:
+  min_product_price: "0.00"
+  max_product_price: "100.00"
+  

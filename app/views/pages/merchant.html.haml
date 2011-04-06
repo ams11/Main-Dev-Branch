@@ -43,10 +43,14 @@
     <div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
     
 %p
+  = 'constraints.inspect = ' + MERCHANT_CONFIG['constraints'].inspect
+  
+%p
   = 'product_types.size = ' + MERCHANT_CONFIG['product_types'].size.to_s
 
 %p
-  = MERCHANT_CONFIG['product_types'].inspect
+  = 'product_types.inspect = ' + MERCHANT_CONFIG['product_types'].inspect
   
 %p
-  = MERCHANT_CONFIG['product_tags'].inspect  
+  = 'product_tags.inspect = ' + MERCHANT_CONFIG['product_tags'].inspect 
+  
