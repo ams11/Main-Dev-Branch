@@ -1,15 +1,29 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  id: MyString
-  vendor: MyString
+  id: 1
   product_type: MyString
+  product_category: MyString
   title: MyString
-  body_html: MyString
+  body_html: MyText
+  color: MyString
+  gender: MyString
+  brand: MyString
+  onsale: MyString
+  collectible: MyString
+  custom: MyString
+  vendor: MyString
 
 two:
-  id: MyString
-  vendor: MyString
+  id: 1
   product_type: MyString
+  product_category: MyString
   title: MyString
-  body_html: MyString
+  body_html: MyText
+  color: MyString
+  gender: MyString
+  brand: MyString
+  onsale: MyString
+  collectible: MyString
+  custom: MyString
+  vendor: MyString

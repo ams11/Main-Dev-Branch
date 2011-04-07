@@ -14,6 +14,7 @@ authorization do
 		has_permission_on :pages, :to => [:home, :visitor, :member, :merchant]
 		has_permission_on :users, :to => [:new, :create, :edit, :update]
 		has_permission_on :mproducts, :to => [:index, :show, :edit, :new, :create, :destroy]
+		has_permission_on :sproducts, :to => [:index, :show, :edit, :new, :create, :destroy]
 	end
 	role :admin do
 		has_permission_on :pages, :to => [:home, :visitor, :member, :merchant, :admin]

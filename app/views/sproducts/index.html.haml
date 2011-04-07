@@ -1,0 +1,41 @@
+%h1 Listing sproducts
+
+%table
+  %tr
+    %th Id
+    %th Product type
+    %th Product category
+    %th Title
+    %th Body html
+    %th Color
+    %th Gender
+    %th Brand
+    %th Onsale
+    %th Collectible
+    %th Custom
+    %th Vendor
+    %th
+    %th
+    %th
+
+  - @sproducts.each do |sproduct|
+    %tr
+      %td= sproduct.id
+      %td= sproduct.product_type
+      %td= sproduct.product_category
+      %td= sproduct.title
+      %td= sproduct.body_html
+      %td= sproduct.color
+      %td= sproduct.gender
+      %td= sproduct.brand
+      %td= sproduct.onsale
+      %td= sproduct.collectible
+      %td= sproduct.custom
+      %td= sproduct.vendor
+      %td= link_to 'Show', sproduct
+      %td= link_to 'Edit', edit_sproduct_path(sproduct)
+      %td= link_to 'Destroy', sproduct, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Sproduct', new_sproduct_path

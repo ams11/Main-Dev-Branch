@@ -1,0 +1,51 @@
+= form_for @sproduct do |f|
+  -if @sproduct.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sproduct.errors.count, "error")} prohibited this sproduct from being saved:"
+      %ul
+        - @sproduct.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :id
+    = f.text_field :id
+  .field
+    = f.label :product_type
+    = f.text_field :product_type
+  .field
+    = f.label :product_category
+    = f.text_field :product_category
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :body_html
+    = f.text_area :body_html
+  .field
+    = f.label :color
+    = f.text_field :color
+  .field
+    = f.label :gender
+    = f.text_field :gender
+  .field
+    = f.label :brand
+    = f.text_field :brand
+  .field
+    = f.label :onsale
+    = f.text_field :onsale
+  .field
+    = f.label :collectible
+    = f.text_field :collectible
+  .field
+    = f.label :custom
+    = f.text_field :custom
+  .field
+    = f.label :vendor
+    = f.text_field :vendor
+  %p
+    - f.fields_for :sproduct_variants do |builder|
+      = render 'sproduct_variant_fields', :f => builder
+  .field
+    = link_to_add_fields('Add SKU', f, :sproduct_variants)
+  .actions
+    = f.submit 'Save'
