@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407163124) do
+ActiveRecord::Schema.define(:version => 20110407215953) do
 
   create_table "sproduct_variants", :force => true do |t|
     t.integer  "sproduct_id"
@@ -36,6 +36,10 @@ ActiveRecord::Schema.define(:version => 20110407163124) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "shopify_product_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "users", :force => true do |t|

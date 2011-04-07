@@ -1,4 +1,4 @@
-= form_for @sproduct do |f|
+= form_for @sproduct, :html => { :multipart => true} do |f|
   -if @sproduct.errors.any?
     #error_explanation
       %h2= "#{pluralize(@sproduct.errors.count, "error")} prohibited this sproduct from being saved:"
@@ -42,6 +42,9 @@
   .field
     = f.label :vendor
     = f.text_field :vendor
+  .field
+    = f.label :picture
+    = f.file_field :picture
   %p
     - f.fields_for :sproduct_variants do |builder|
       = render 'sproduct_variant_fields', :f => builder

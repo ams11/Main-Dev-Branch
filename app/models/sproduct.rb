@@ -2,6 +2,8 @@ class Sproduct < ActiveRecord::Base
   has_many :sproduct_variants, :dependent => :destroy
   accepts_nested_attributes_for :sproduct_variants, :allow_destroy => true
   
+  has_attached_file :picture
+  
   validates_presence_of :title
   
   ShopifyAPI::Base.site = 'http://' + APP_CONFIG['shopify_api_key'] + ':' + APP_CONFIG['shopify_password'] + '@' + APP_CONFIG['shopify_store_url'] + '/admin'
@@ -35,6 +37,7 @@ class Sproduct < ActiveRecord::Base
       shopify_attributes["variants"] = @sproduct_variants.collect do |variant|
         { "sku" => "#{variant.sku}", "price" => "#{variant.price}", "option1" => "#{variant.size}" }
       end
+      shopify_attributes["images"] = [{"src" => self.picture.url}] if self.picture.exists?
       
       if is_new_shopify_product
         if p = ShopifyAPI::Product.create(shopify_attributes)

@@ -54,6 +54,9 @@ GEM
     mime-types (1.16)
     mocha (0.9.12)
     nifty-generators (0.4.5)
+    paperclip (2.3.10)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -100,6 +103,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   nifty-generators
+  paperclip
   rails (= 3.0.4)
   rails3-generators
   ruby_parser
