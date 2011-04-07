@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406215414) do
+ActiveRecord::Schema.define(:version => 20110407163124) do
 
   create_table "sproduct_variants", :force => true do |t|
     t.integer  "sproduct_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110406215414) do
     t.string   "vendor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "shopify_product_id"
   end
 
   create_table "users", :force => true do |t|
