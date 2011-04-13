@@ -18,6 +18,7 @@ gem 'ruby_parser'
 gem 'shopify_api'
 gem 'jquery-rails'
 gem 'paperclip'
+gem 'aws-s3'
 
 # Use unicorn as the web server
 # gem 'unicorn'

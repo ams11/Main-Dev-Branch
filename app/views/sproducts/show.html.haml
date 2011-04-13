@@ -1,50 +1,56 @@
-%p#notice= notice
 
-%p
-  %b Id:
-  = @sproduct.id
-%p
-  %b Product type:
-  = @sproduct.product_type
-%p
-  %b Product category:
-  = @sproduct.product_category
-%p
-  %b Title:
-  = @sproduct.title
-%p
-  %b Body html:
-  = @sproduct.body_html
-%p
-  %b Color:
-  = @sproduct.color
-%p
-  %b Gender:
-  = @sproduct.gender
-%p
-  %b Brand:
-  = @sproduct.brand
-%p
-  %b Onsale:
-  = @sproduct.onsale
-%p
-  %b Collectible:
-  = @sproduct.collectible
-%p
-  %b Custom:
-  = @sproduct.custom
-%p
-  %b Vendor:
-  = @sproduct.vendor
-%p
-  %b Picture:
-  = image_tag @sproduct.picture.url
+%div{:style => "margin:10px"}
 
-%p
-  %ol
-    - for variant in @sproduct.sproduct_variants
-      %li= "sku=#{variant.sku}, price=#{number_to_currency(variant.price)}, size=#{variant.size}"
-  
-= link_to 'Edit', edit_sproduct_path(@sproduct)
-\|
-= link_to 'Back', sproducts_path
+  %h1 Show Product
+
+  %p#notice= notice
+
+  %table
+    %tr
+      %td{:style => "font-weight:bold"} Id:
+      %td= @sproduct.id
+    %tr
+      %td{:style => "font-weight:bold"} Product type:
+      %td= @sproduct.product_type
+    %tr
+      %td{:style => "font-weight:bold"} Product category:
+      %td= @sproduct.product_category
+    %tr
+      %td{:style => "font-weight:bold"} Title:
+      %td= @sproduct.title
+    %tr
+      %td{:style => "font-weight:bold"} Body html:
+      %td= @sproduct.body_html
+    %tr
+      %td{:style => "font-weight:bold"} Color:
+      %td= @sproduct.color
+    %tr
+      %td{:style => "font-weight:bold"} Gender:
+      %td= @sproduct.gender
+    %tr
+      %td{:style => "font-weight:bold"} Brand:
+      %td= @sproduct.brand
+    %tr
+      %td{:style => "font-weight:bold"} Onsale:
+      %td= @sproduct.onsale
+    %tr
+      %td{:style => "font-weight:bold"} Collectible:
+      %td= @sproduct.collectible
+    %tr
+      %td{:style => "font-weight:bold"} Custom:
+      %td= @sproduct.custom
+    %tr
+      %td{:style => "font-weight:bold"} Vendor:
+      %td= @sproduct.vendor
+    %tr
+      %td{:style => "font-weight:bold"} Picture:
+      %td= image_tag @sproduct.picture.url
+
+  %p
+    %ol
+      - for variant in @sproduct.sproduct_variants
+        %li= "sku=#{variant.sku}, price=#{number_to_currency(variant.price)}, size=#{variant.size}"
+    
+  = link_to 'Edit', edit_sproduct_path(@sproduct)
+  \|
+  = link_to 'Back', sproducts_path

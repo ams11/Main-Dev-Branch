@@ -32,6 +32,10 @@ GEM
     arel (2.0.9)
     authlogic (2.1.6)
       activesupport
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     builder (2.1.2)
     declarative_authorization (0.5.2)
     erubis (2.6.6)
@@ -90,6 +94,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    xml-simple (1.0.15)
 
 PLATFORMS
   x86-mingw32
@@ -97,6 +102,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   authlogic
+  aws-s3
   declarative_authorization
   haml
   haml-rails

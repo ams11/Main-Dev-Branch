@@ -1,0 +1,31 @@
+
+%div{:style => "margin:10px"}
+
+  %div{:style => "width:500px; height:300px; margin:10px; border:1px solid black; float:left"}
+    Hero
+
+  %div{:style => "width:200px; height:300px; margin:10px; border:1px solid black; float:left"}
+    Sidekicks
+
+  %div{:style => "width:150px; height:300px; margin:10px; border:1px solid black; float:left"}
+    Top Ten
+
+  %div{:style => "clear:both"}
+
+  %hr
+  %h1 Pages#home
+  %p Find me in app/views/pages/home.html.haml
+
+  = render 'users/showroles'
+
+  %p
+    = link_to "Visitor", pages_visitor_path
+    - if permitted_to? [:member,:merchant,:admin]
+      = "| "
+      = link_to "Member", pages_member_path
+    - if permitted_to? [:merchant,:admin]
+      = "| "
+      = link_to "Merchant", pages_merchant_path
+    - if permitted_to? :admin
+      = "| "
+      = link_to "Admin", pages_admin_path

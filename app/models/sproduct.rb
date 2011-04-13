@@ -2,12 +2,27 @@ class Sproduct < ActiveRecord::Base
   has_many :sproduct_variants, :dependent => :destroy
   accepts_nested_attributes_for :sproduct_variants, :allow_destroy => true
   
-  has_attached_file :picture
+  has_attached_file :picture,
+    :storage => :s3,
+    :bucket => 'dev.soletron.com',
+    :path => 'prod',
+    :s3_credentials => {
+      :access_key_id => 'AKIAIYLNZCHSQSVA2WRQ',
+      :secret_access_key => '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'
+    }
   
   validates_presence_of :title
   
   ShopifyAPI::Base.site = 'http://' + APP_CONFIG['shopify_api_key'] + ':' + APP_CONFIG['shopify_password'] + '@' + APP_CONFIG['shopify_store_url'] + '/admin'
 
+  def self.count(attributes = {})
+    begin
+      ShopifyAPI::Product.count(attributes)
+    rescue
+      "Lookup failed"
+    end
+  end
+  
   def self.find_or_create_custom_collection(title)
     if c = ShopifyAPI::CustomCollection.find(:all, :params => {:title => title}).size > 0
       ShopifyAPI::CustomCollection.find(:all, :params => {:title => title}).first
@@ -69,8 +84,11 @@ class Sproduct < ActiveRecord::Base
   
   def destroy
     if !self.shopify_product_id.to_s.blank?
-      p = ShopifyAPI::Product.find(self.shopify_product_id)
-      p.destroy
+      begin
+        p = ShopifyAPI::Product.find(self.shopify_product_id)
+        p.destroy
+      rescue
+      end
     end
     super
   end

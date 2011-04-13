@@ -2,12 +2,12 @@
   .field
     = f.label :sku
     = f.text_field :sku
-  .field
     = f.label :price
     = f.text_field :price
-  .field
     = f.label :size
-    = f.text_field :size
-  .field
+    = f.hidden_field :size
+    - MERCHANT_CONFIG['product_types'].each do |pt|
+      %select{:class => "sz-#{pt['product_type']}", :style => "display:none"}
+        = options_for_select pt['sizes']
     = link_to_remove_fields "remove", f
   %br/

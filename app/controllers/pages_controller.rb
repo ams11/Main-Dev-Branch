@@ -11,6 +11,8 @@ class PagesController < ApplicationController
   end
 
   def merchant
+    @countProducts = Sproduct.count({:vendor => current_user.shopify_product_vendor})
+    @countOpenOrders = Sorder.countOpen
   end
 
   def admin

@@ -1,3 +1,106 @@
+- content_for :head do
+  :javascript
+
+    var action;
+    
+    $(function() {
+      action = $("#current_action").attr("action");
+      //alert("1");
+      initCategories();
+      //alert("2");
+      initSizes();
+      //alert("3");
+    });
+    
+    function initCategories() {
+      //var initial_product_type = $('#sproduct_product_type option:selected').val();
+      var initial_product_type = $('#sproduct_product_type').val();
+
+      $('select[id^="pc-"]').change(function() {
+        $('#sproduct_product_category').val($(this).val())
+      });
+
+      if (action == "new")
+        showCategory(initial_product_type);
+
+      $('#sproduct_product_type').change(function() {
+        showCategory($(this).val());
+      });
+    }
+
+    function showCategory(pt) {
+      $('select[id^="pc-"]').hide();
+      $('select[id="pc-' + pt + '"]').show();
+      setSelectedCategory(pt);
+    }
+    
+    function setSelectedCategory(pt) {
+      var selector = 'select[id=pc-' + pt + ']';
+      var valueSelector = 'option[value="' + $('#sproduct_product_category').val() + '"]';
+      var index0Selector = 'option:first';
+
+      $(selector).removeAttr('selected');
+
+      if ( $(selector).is(valueSelector) ) {
+        //alert('option found')
+        $(selector + ' ' + valueSelector).attr('selected','selected');
+        $('#sproduct_product_category').val($(selector + ' ' + valueSelector).val())
+       }
+       else {
+        //alert('option not found');
+        $(selector + ' ' + index0Selector).attr('selected','selected');
+        $('#sproduct_product_category').val($(selector + ' ' + index0Selector).val())
+      }
+    }
+
+    function initSizes() {
+      //alert("initSizes");
+      //var initial_product_type = $('#sproduct_product_type option:selected').val();
+      var initial_product_type = $('#sproduct_product_type').val();
+      //alert("initial_product_type = " + initial_product_type);
+
+      $('select[class^="sz-"]').change(function() {
+        $(this).siblings('input[type="hidden"]').val($(this).val())
+      });
+
+      //if (action == "new")
+        showSize(initial_product_type);
+
+      $('#sproduct_product_type').change(function() {
+        showSize($(this).val());
+      });
+    }
+
+    function showSize(pt) {
+      $('select[class^=sz-]').hide();
+      $('select[class=sz-' + pt + ']').show();
+      setSelectedSize(pt);
+    }
+
+    /* need to set this to current value on edit */
+    function setSelectedSize(pt) {
+      var selector = 'select[class=sz-' + pt + ']';
+      $(selector).each(function(index) {
+        $(this).val( $(this).siblings('input[type="hidden"]').val() );
+        //$(this).siblings('input[type="hidden"]').val( $(this).children('option:first').val() );
+        //$(this).val(  $(this).children('option:first').val()  );
+        //$(this).attr('selected','selected');
+      });
+    }
+    
+    function afterAddFields() {
+      $('input[id$="_size"]').each(function(index) {
+        if ($(this).siblings('select:visible').size() == 0) {
+          $(this).siblings('select').change(function() {
+            $(this).siblings('input[type="hidden"]').val($(this).val())
+          });
+          $(this).siblings('select:first').show();
+        }
+      });
+    }
+    
+%div{:id => "current_action", :action => @current_action, :style => "display:none"}
+    
 = form_for @sproduct, :html => { :multipart => true} do |f|
   -if @sproduct.errors.any?
     #error_explanation
@@ -6,48 +109,74 @@
         - @sproduct.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :id
-    = f.text_field :id
-  .field
-    = f.label :product_type
-    = f.text_field :product_type
-  .field
-    = f.label :product_category
-    = f.text_field :product_category
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body_html
-    = f.text_area :body_html
-  .field
-    = f.label :color
-    = f.text_field :color
-  .field
-    = f.label :gender
-    = f.text_field :gender
-  .field
-    = f.label :brand
-    = f.text_field :brand
-  .field
-    = f.label :onsale
-    = f.text_field :onsale
-  .field
-    = f.label :collectible
-    = f.text_field :collectible
-  .field
-    = f.label :custom
-    = f.text_field :custom
-  .field
-    = f.label :vendor
-    = f.text_field :vendor
-  .field
-    = f.label :picture
-    = f.file_field :picture
-  %p
-    - f.fields_for :sproduct_variants do |builder|
-      = render 'sproduct_variant_fields', :f => builder
+  %table
+    %tr
+      .field
+        %td= f.label :id
+        %td= f.text_field :id, options = {:disabled => "disabled"}
+    %tr
+      .field
+        %td= f.label :product_type
+        %td
+          - if @current_action == "new"
+            = select("sproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
+          - else
+            = f.text_field :product_type, options = {:disabled => "disabled"}
+    %tr
+      .field
+        %td= f.label :product_category
+        %td
+          - if @current_action == "new"
+            = f.hidden_field :product_category
+            - MERCHANT_CONFIG['product_types'].each do |pt|
+              %select{:id => "pc-#{pt['product_type']}", :style => "display:none"}
+                = options_for_select(pt['product_categories'])
+          - else
+            = f.text_field :product_category, options = {:disabled => "disabled"}
+    %tr
+      .field
+        %td= f.label :title
+        %td= f.text_field :title
+    %tr
+      .field
+        %td= f.label :body_html
+        %td= f.text_area :body_html, :size => "50x4"
+    %tr
+      .field
+        %td= f.label :color
+        %td= f.select("color", MERCHANT_CONFIG['product_tags']['color'].collect {|x| x[0].capitalize})
+    %tr
+      .field
+        %td= f.label :gender
+        %td= f.select("gender", MERCHANT_CONFIG['product_tags']['gender'])
+    %tr
+      .field
+        %td= f.label :brand
+        %td= f.select("brand", MERCHANT_CONFIG['product_tags']['brand'].clone.insert(0,'').insert(0,current_user.username))
+    %tr
+      .field
+        %td= f.label :onsale
+        %td= f.select("onsale", MERCHANT_CONFIG['product_tags']['onsale'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
+        %td= f.label :collectible
+        %td= f.select("collectible", MERCHANT_CONFIG['product_tags']['collectible'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
+        %td= f.label :custom
+        %td= f.select("custom", MERCHANT_CONFIG['product_tags']['custom'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
+        %td= f.label :vendor
+        %td= f.text_field :vendor, options = {:readonly => "readonly"}
+    %tr
+      .field
+        %td= f.label :picture
+        %td= f.file_field :picture
+
+  %br/
+  - f.fields_for :sproduct_variants do |builder|
+    = render 'sproduct_variant_fields', :f => builder
   .field
     = link_to_add_fields('Add SKU', f, :sproduct_variants)
   .actions
