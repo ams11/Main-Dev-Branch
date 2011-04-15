@@ -25,6 +25,10 @@
 	float: right;
 }
 
+#secondary-navigation ul li {
+  position: relative;
+}
+
 .clear {
   clear: both;
   height: 0;

@@ -55,16 +55,13 @@
 
     function initSizes() {
       //alert("initSizes");
-      //var initial_product_type = $('#sproduct_product_type option:selected').val();
       var initial_product_type = $('#sproduct_product_type').val();
-      //alert("initial_product_type = " + initial_product_type);
 
       $('select[class^="sz-"]').change(function() {
         $(this).siblings('input[type="hidden"]').val($(this).val())
       });
 
-      //if (action == "new")
-        showSize(initial_product_type);
+      showSize(initial_product_type);
 
       $('#sproduct_product_type').change(function() {
         showSize($(this).val());
@@ -72,6 +69,7 @@
     }
 
     function showSize(pt) {
+      //alert("showSize");
       $('select[class^=sz-]').hide();
       $('select[class=sz-' + pt + ']').show();
       setSelectedSize(pt);
@@ -82,9 +80,6 @@
       var selector = 'select[class=sz-' + pt + ']';
       $(selector).each(function(index) {
         $(this).val( $(this).siblings('input[type="hidden"]').val() );
-        //$(this).siblings('input[type="hidden"]').val( $(this).children('option:first').val() );
-        //$(this).val(  $(this).children('option:first').val()  );
-        //$(this).attr('selected','selected');
       });
     }
     
@@ -94,7 +89,8 @@
           $(this).siblings('select').change(function() {
             $(this).siblings('input[type="hidden"]').val($(this).val())
           });
-          $(this).siblings('select:first').show();
+          var pt = $('#sproduct_product_type').val();
+          $(this).siblings('select[class=sz-' + pt + ']').show();
         }
       });
     }

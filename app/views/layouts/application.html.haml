@@ -39,7 +39,7 @@
             #primary-navigation
               %ul
                 %li.deactivated
-                  %a{:href => "javascript:void(0)", :title => "Coming Soon"} buy
+                  = link_to "buy", market_show_path(:path => "all")
                 %li.deactivated
                   %a{:href => "javascript:void(0)", :title => "Coming Soon"} sell
                 %li.deactivated
@@ -54,17 +54,19 @@
             #secondary-navigation.menu-secondary-container
               %ul#menu-secondary.menu
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-86
-                  %a{:href => "javascript:alert('Coming soon')"} Hats
+                  = link_to "Hats", market_show_path(:path => "types?q=Hats")
+
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-81
-                  %a{:href => "javascript:alert('Coming soon')"} Tops
+                  = link_to "Tops", market_show_path(:path => "types?q=Tops")
+                
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-80
-                  %a{:href => "javascript:alert('Coming soon')"} Bottoms
+                  = link_to "Bottoms", market_show_path(:path => "types?q=Bottoms")
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-85
-                  %a{:href => "javascript:alert('Coming soon')"} Footwear
+                  = link_to "Footwear", market_show_path(:path => "types?q=Footwear")
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-82
-                  %a{:href => "javascript:alert('Coming soon')"} Accessories/Other
+                  = link_to "Accessories/Other", market_show_path(:path => "types?q=Accessories/Other")
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-84
-                  %a{:href => "javascript:alert('Coming soon')"} Art/Toys/Electronics
+                  = link_to "Art/Toys/Electronics", market_show_path(:path => "types?q=Art/Toys/Electronics")
           
           #template-container
             - flash.each do |name, msg|

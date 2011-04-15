@@ -1,5 +1,7 @@
 V2::Application.routes.draw do
 
+  get "market/show"
+
   resources :sproducts
 
   get "users/index"
