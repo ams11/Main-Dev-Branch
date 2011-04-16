@@ -1,0 +1,38 @@
+
+%div{:style => "margin:10px"}
+
+  %h1 All Orders
+
+  %table
+    %tr
+      %th Date
+      %th Order#
+      %th Status
+      %th Items
+      %th Total
+      %th Vendor Total
+      %th Vendor Shipping
+      %th Email
+      %th
+    - @orders.each do |order|
+      %tr
+        %td= order.created_at.strftime("%Y-%m-%d %I:%M%p")
+        %td= order.name
+        %td= order.unshipped_items_for_vendor ? "Open" : "Shipped"
+        %td= order.line_items.size
+        %td= number_to_currency order.total_price
+        %td= number_to_currency order.total_line_items_price_vendor
+        %td= number_to_currency order.shipping_vendor
+        %td= order.customer.email
+        %td
+          = link_to "Show", "#{order.id}"
+          = link_to "Edit", "#{order.id}/edit" if order.unshipped_items_for_vendor
+
+  %div{:style => "margin-top:50px"}
+    %hr
+    %h1 Dev Stuff
+    %p Find me in app/views/sorders/index.html.haml
+    - @orders.each do |order|
+      %p
+        %pre= order.to_yaml
+

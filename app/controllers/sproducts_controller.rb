@@ -5,7 +5,7 @@ class SproductsController < ApplicationController
   # GET /sproducts
   # GET /sproducts.xml
   def index
-    @sproducts = Sproduct.all
+    @sproducts = Sproduct.where("vendor = ?", current_user.shopify_product_vendor)
 
     respond_to do |format|
       format.html # index.html.erb

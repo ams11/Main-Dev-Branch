@@ -17,7 +17,7 @@ class Sproduct < ActiveRecord::Base
 
   def self.count(attributes = {})
     begin
-      ShopifyAPI::Product.count(attributes)
+      where("vendor = ?", attributes[:vendor]).count
     rescue
       "Lookup failed"
     end

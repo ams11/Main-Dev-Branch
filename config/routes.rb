@@ -1,7 +1,16 @@
 V2::Application.routes.draw do
 
-  get "market/show"
+  resources :sorders do
+    #member do
+    #  get :display
+    #end
+    collection do
+      get :open
+    end
+  end
 
+  get "market/show"
+  
   resources :sproducts
 
   get "users/index"

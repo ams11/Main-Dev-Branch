@@ -18,9 +18,9 @@
       = link_to "New Product", new_sproduct_path
     .div
       %h2 Orders
-      = link_to "Open Orders", sproducts_path
+      = link_to "Open Orders", "#{sorders_path}/open"
       %br/
-      = link_to "All Orders", new_sproduct_path
+      = link_to "All Orders", "#{sorders_path}"
   %div{:style => "float:right; margin-right:50px"}
     .div
       %h2 Store
