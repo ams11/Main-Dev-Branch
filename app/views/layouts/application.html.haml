@@ -24,10 +24,10 @@
                   = link_to "Logout", signout_path
                   = "|"
                   = link_to "Edit Profile", edit_user_path(:current)
-                  - if permitted_to? :merchant
+                  - if has_role? :merchant
                     = "|"
                     = link_to "Merchant Portal", pages_merchant_path
-                  - if permitted_to? :admin
+                  - if has_role? :admin
                     = "|"
                     = link_to "Admin Portal", pages_admin_path
                 - else

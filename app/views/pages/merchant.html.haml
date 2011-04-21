@@ -7,31 +7,34 @@
       $('#tabs').tabs();
     })
 
-.div{:style => "margin:10px"}
+%div.container.showgrid{:style => "margin:10px"}
   %h1 Merchant Portal
   %br/
-  %div{:style => "float:left"}
+  %div.span-12
     .div
       %h2 Products
       = link_to "List Products", sproducts_path
       %br/
       = link_to "New Product", new_sproduct_path
+  %div.span-12.last
+    .div
+      %h2 Store
+      = "Total Products: #{@countProducts}"
+
+  %div.span-24{:style => "height:20px"}
+      
+  %div.span-12
     .div
       %h2 Orders
       = link_to "Open Orders", "#{sorders_path}/open"
       %br/
       = link_to "All Orders", "#{sorders_path}"
-  %div{:style => "float:right; margin-right:50px"}
-    .div
-      %h2 Store
-      = "Total Products: #{@countProducts}"
-      %br/
+  %div.span-12.last
     .div
       %h2 Orders
       = "Open Orders: #{@countOpenOrders}"
       %br/
       %span{:style => "color:red"}= "Late Orders: #{'42'}"
-  %div{:style => "clear:both"}
 
 .div{:style => "margin:100px 10px"}
   %hr
