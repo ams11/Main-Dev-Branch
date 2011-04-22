@@ -1,5 +1,8 @@
 class SproductVariant < ActiveRecord::Base
   belongs_to :sproduct
+  
+  validates_presence_of :sku, :price
+  
 end
 
 # == Schema Information

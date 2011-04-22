@@ -6,12 +6,13 @@ class Sproduct < ActiveRecord::Base
     :storage => :s3,
     :bucket => 'dev.soletron.com',
     :path => 'prod',
-    :s3_credentials => {
-      :access_key_id => 'AKIAIYLNZCHSQSVA2WRQ',
-      :secret_access_key => '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'
-    }
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml"
+    #:s3_credentials => {
+    #  :access_key_id => 'AKIAIYLNZCHSQSVA2WRQ',
+    #  :secret_access_key => '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'
+    #}
   
-  validates_presence_of :title
+  validates_presence_of :title, :body_html
   
   ShopifyAPI::Base.site = 'http://' + APP_CONFIG['shopify_api_key'] + ':' + APP_CONFIG['shopify_password'] + '@' + APP_CONFIG['shopify_store_url'] + '/admin'
 

@@ -1,0 +1,15 @@
+
+development:
+  access_key_id: 'AKIAIYLNZCHSQSVA2WRQ'
+  secret_access_key: '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'
+  bucket: '' 
+
+test:
+  access_key_id: 'AKIAIYLNZCHSQSVA2WRQ'
+  secret_access_key: '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'
+  bucket: '' 
+
+production:
+  access_key_id: 'AKIAIYLNZCHSQSVA2WRQ'
+  secret_access_key: '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'
+  bucket: '' 
