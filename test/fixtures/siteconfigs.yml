@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  hero_url: MyString
+  sidekick_url_1: MyString
+  sidekick_url_2: MyString
+  sidekick_url_3: MyString
+
+two:
+  hero_url: MyString
+  sidekick_url_1: MyString
+  sidekick_url_2: MyString
+  sidekick_url_3: MyString

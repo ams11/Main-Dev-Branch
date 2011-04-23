@@ -6,11 +6,11 @@ class Sproduct < ActiveRecord::Base
     :storage => :s3,
     :bucket => 'dev.soletron.com',
     :path => 'prod',
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml"
-    #:s3_credentials => {
-    #  :access_key_id => 'AKIAIYLNZCHSQSVA2WRQ',
-    #  :secret_access_key => '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'
-    #}
+    :s3_credentials => {
+      :access_key_id => 'AKIAIYLNZCHSQSVA2WRQ',
+      :secret_access_key => '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'
+    }
+    #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml"
   
   validates_presence_of :title, :body_html
   
@@ -107,24 +107,29 @@ class Sproduct < ActiveRecord::Base
   
 end
 
+
 # == Schema Information
 #
 # Table name: sproducts
 #
-#  id                 :integer         not null, primary key
-#  product_type       :string(255)
-#  product_category   :string(255)
-#  title              :string(255)
-#  body_html          :text
-#  color              :string(255)
-#  gender             :string(255)
-#  brand              :string(255)
-#  onsale             :string(255)
-#  collectible        :string(255)
-#  custom             :string(255)
-#  vendor             :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  shopify_product_id :integer
+#  id                   :integer         not null, primary key
+#  product_type         :string(255)
+#  product_category     :string(255)
+#  title                :string(255)
+#  body_html            :text
+#  color                :string(255)
+#  gender               :string(255)
+#  brand                :string(255)
+#  onsale               :string(255)
+#  collectible          :string(255)
+#  custom               :string(255)
+#  vendor               :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  shopify_product_id   :integer
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
 #
 

@@ -1,0 +1,2 @@
+module SiteconfigHelper
+end

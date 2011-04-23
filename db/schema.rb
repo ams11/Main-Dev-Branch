@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407215953) do
+ActiveRecord::Schema.define(:version => 20110422234111) do
+
+  create_table "siteconfigs", :force => true do |t|
+    t.string   "hero_url"
+    t.string   "sidekick_url_1"
+    t.string   "sidekick_url_2"
+    t.string   "sidekick_url_3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sproduct_variants", :force => true do |t|
     t.integer  "sproduct_id"

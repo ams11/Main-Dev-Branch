@@ -1,9 +1,9 @@
 V2::Application.routes.draw do
 
+  get "siteconfig/edit"
+  put "siteconfig/update"
+
   resources :sorders do
-    #member do
-    #  get :display
-    #end
     collection do
       get :open
     end

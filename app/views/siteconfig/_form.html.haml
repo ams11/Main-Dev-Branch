@@ -1,0 +1,17 @@
+    
+= form_tag '/siteconfig/update', :multipart => true, :method => :put do 
+  
+  -if @siteconfig.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@siteconfig.errors.count, "error")} prohibited this siteconfig from being saved:"
+      %ul
+        - @siteconfig.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table
+    %tr
+      .field
+        %td= label_tag :hero_url
+        %td= text_field_tag :hero_url
+  .actions
+    = submit_tag 'Save'
