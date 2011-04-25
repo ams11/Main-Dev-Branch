@@ -1,5 +1,11 @@
 
-%div{:style => "margin:10px"}
+- content_for :head do
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+
+%div{:style => "margin:10px; font-size:75%"}
 
   %h1 All Orders
 
@@ -25,8 +31,8 @@
         %td= number_to_currency order.shipping_vendor
         %td= order.customer.email
         %td
-          = link_to "Show", "#{order.id}"
-          = link_to "Edit", "#{order.id}/edit" if order.unshipped_items_for_vendor
+          = link_to "Show", "#{sorders_path}/#{order.id}"
+          = link_to "Edit", "#{sorders_path}/#{order.id}/edit" if order.unshipped_items_for_vendor
 
   %div{:style => "margin-top:50px"}
     %hr

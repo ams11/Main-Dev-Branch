@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -19,6 +19,7 @@ gem 'shopify_api'
 gem 'jquery-rails'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'acts_as_singleton'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -1,18 +1,14 @@
 !!! 5
 %html
   %head
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    %title= content_for?(:title) ? yield(:title) : "Soletron - Dev"
     = stylesheet_link_tag "application"
     = stylesheet_link_tag "style"
     = stylesheet_link_tag "overrides"
-    = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-    = stylesheet_link_tag "blueprint/print", :media => "print"
-    /[if lt IE 8]
-      = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
     = javascript_include_tag :defaults
     = csrf_meta_tag
     = yield(:head)
-  %body{:style => "background-color:black"}
+  %body.soletron
     #body-header
       #main-container
         #main-container-float
@@ -54,7 +50,7 @@
               #search-legend BLOG
               %form#searchform{:role => "search", :method => "get", :action => ""}
                 %input#s{:type => "text", :value => "SEARCH", :name => "s"}
-                %input#searchsubmit{:type => "submit"}
+                %input#searchsubmit{:type => "submit", :value => ""}
             #secondary-navigation.menu-secondary-container
               %ul#menu-secondary.menu
                 %li.menu-item.menu-item-type-taxonomy.menu-item-object-category.menu-item-86
@@ -79,3 +75,27 @@
             = yield
 
           #footer-container
+            #logo
+              %a{:href => "/", :title => "Soletron"}
+                %span Soletron
+            #copyright Copyright &copy; 2001 by Soletron LLC. All Rights Reserved.
+            #bottom-navigation.menu-foot-container
+              %ul#menu-footer.menu
+                %li#menu-item-24.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-24
+                  %a{:href => "#"} Advertise
+                %li#menu-item-25.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-25
+                  %a{:href => "#"} Strategic Partners
+                %li#menu-item-26.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-26
+                  %a{:href => "#"} Careers
+                %li#menu-item-27.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-27
+                  %a{:href => "#"} Contact
+                %li#menu-item-23.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-23
+                  %a{:href => "#"} About Us
+                %li#menu-item-545.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-545
+                  %a{:href => "/"} Home
+          
+          
+          
+          
+          
+          

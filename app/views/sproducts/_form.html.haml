@@ -5,11 +5,9 @@
     
     $(function() {
       action = $("#current_action").attr("action");
-      //alert("1");
       initCategories();
-      //alert("2");
       initSizes();
-      //alert("3");
+      hideFirstSkuRemove();
     });
     
     function initCategories() {
@@ -93,6 +91,10 @@
           $(this).siblings('select[class=sz-' + pt + ']').show();
         }
       });
+    }
+    
+    function hideFirstSkuRemove() {
+      $('.removesku:first').hide();
     }
     
 %div{:id => "current_action", :action => @current_action, :style => "display:none"}

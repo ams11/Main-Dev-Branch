@@ -9,5 +9,5 @@
     - MERCHANT_CONFIG['product_types'].each do |pt|
       %select{:class => "sz-#{pt['product_type']}", :style => "display:none"}
         = options_for_select pt['sizes']
-    = link_to_remove_fields "remove", f
+    = link_to_remove_fields "remove", f, :class => "removesku"
   %br/

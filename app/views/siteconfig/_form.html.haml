@@ -1,5 +1,5 @@
     
-= form_tag '/siteconfig/update', :multipart => true, :method => :put do 
+= form_for @siteconfig, :html => { :multipart => true} do |f|
   
   -if @siteconfig.errors.any?
     #error_explanation
@@ -11,7 +11,7 @@
   %table
     %tr
       .field
-        %td= label_tag :hero_url
-        %td= text_field_tag :hero_url
+        %td= f.label :hero_url
+        %td= f.text_field :hero_url
   .actions
-    = submit_tag 'Save'
+    = f.submit 'Save'

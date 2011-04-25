@@ -1,7 +1,6 @@
 V2::Application.routes.draw do
 
-  get "siteconfig/edit"
-  put "siteconfig/update"
+  resources :siteconfig, :only => [:edit, :update]
 
   resources :sorders do
     collection do

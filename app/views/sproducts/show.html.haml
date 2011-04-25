@@ -1,5 +1,11 @@
 
-%div{:style => "margin:10px"}
+- content_for :head do
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+
+%div{:style => "margin:10px; font-size:75%"}
 
   %h1 Show Product
 

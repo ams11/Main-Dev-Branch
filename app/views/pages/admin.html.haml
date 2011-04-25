@@ -1,3 +1,20 @@
-%h1 Pages#admin HAML version
-%p Find me in app/views/pages/admin.html.haml
-%p= link_to "Manage Users", users_path
+- content_for :head do
+  = stylesheet_link_tag 'white/jquery-ui-1.8.11.custom.css'
+  = javascript_include_tag 'white/jquery-ui-1.8.11.custom.min.js'
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+
+%div{:style => "margin:10px; font-size:75%"}
+  %h1 Admin Portal
+  %div.span-24
+    %ul
+      %li= link_to "Manage Users", users_path
+      %li= link_to "Site Configuration", edit_siteconfig_path(1)
+
+  %div.span-24{:style => "margin-top:50px"}
+    %hr
+    %h1 Dev stuff
+    %p Find me in app/views/pages/admin.html.haml
+

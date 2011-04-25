@@ -1,5 +1,11 @@
 
-%div.container.showgrid{:style => "margin:10px"}
+- content_for :head do
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+
+%div{:style => "margin:10px; font-size:75%"}
 
   %h1 Display Order
 
@@ -77,7 +83,7 @@
               %td= li.variant_title
               %td= li.fulfillment_status
   
-  %div.span-20.last{:style => "margin-top:50px"}
+  %div.span-24{:style => "margin-top:50px"}
     %hr
     %h1 Dev stuff
     %p Find me in app/views/sorders/display.html.haml
