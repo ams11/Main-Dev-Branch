@@ -4,3 +4,14 @@
 %div{:style => "margin:10px; font-size:75%"}
   %h1 Merchant Portal
   %br/
+  %div.span-12
+    %h2 Products
+    %ul
+      %li{:style => "margin-left:10px"}= link_to "List Products (#{@countProducts})", sproducts_path
+      %li{:style => "margin-left:10px"}= link_to "New Product", new_sproduct_path
+  %div.span-12.last
+    -#
+      %h2 Store
+      %ul
+        %li{:style => "margin-left:10px"}= "Total Products: #{@countProducts}"
+
