@@ -4,29 +4,3 @@
 %div{:style => "margin:10px; font-size:75%"}
   %h1 Merchant Portal
   %br/
-  %div.span-12
-    %h2 Products
-    %ul
-      %li{:style => "margin-left:10px"}= link_to "List Products (#{@countProducts})", sproducts_path
-      %li{:style => "margin-left:10px"}= link_to "New Product", new_sproduct_path
-  %div.span-12.last
-    -#
-      %h2 Store
-      %ul
-        %li{:style => "margin-left:10px"}= "Total Products: #{@countProducts}"
-
-  %div.span-24{:style => "height:20px"}
-      
-  %div.span-12
-    %h2 Orders
-    %ul
-      %li{:style => "margin-left:10px"}= link_to "Open Orders (#{@countOpenOrders})", "#{sorders_path}/open"
-      %li{:style => "margin-left:10px"}= link_to "All Orders", "#{sorders_path}"
-      %li{:style => "margin-left:10px"}
-        %span{:style => "color:red"}= "Late Orders: #{'42'}"
-  %div.span-12.last
-    -#
-      %h2 Orders
-      %ul
-        %li{:style => "margin-left:10px"}= "Open Orders: #{@countOpenOrders}"
-
