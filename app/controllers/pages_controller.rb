@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  #filter_access_to :all
+  filter_access_to :all
 
   def home
     @siteconfig = Siteconfig.instance
@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   end
 
   def merchant
+    @countProducts = Sproduct.count({:vendor => current_user.shopify_product_vendor})
+    @countOpenOrders = Sorder.countOpen({:vendor => current_user.shopify_product_vendor})
   end
 
   def admin
