@@ -20,7 +20,7 @@
                   = link_to "Logout", signout_path
                   = "|"
                   = link_to "Edit Profile", edit_user_path(:current)
-                  - if has_role? :merchant
+                  - if ( has_role?(:merchant) || has_role?(:admin) )
                     = "|"
                     = link_to "Merchant Portal", pages_merchant_path
                   - if has_role? :admin

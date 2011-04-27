@@ -13,5 +13,21 @@
       .field
         %td= f.label :hero_url
         %td= f.text_field :hero_url
+        %td= f.file_field :hero_picture
+    %tr
+      .field
+        %td= f.label :sidekick_url_1
+        %td= f.text_field :sidekick_url_1
+        %td= f.file_field :sidekick_picture_1
+    %tr
+      .field
+        %td= f.label :sidekick_url_2
+        %td= f.text_field :sidekick_url_2
+        %td= f.file_field :sidekick_picture_2
+    %tr
+      .field
+        %td= f.label :sidekick_url_3
+        %td= f.text_field :sidekick_url_3
+        %td= f.file_field :sidekick_picture_3
   .actions
     = f.submit 'Save'

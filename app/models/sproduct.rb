@@ -4,13 +4,8 @@ class Sproduct < ActiveRecord::Base
   
   has_attached_file :picture,
     :storage => :s3,
-    :bucket => 'dev.soletron.com',
-    :path => 'prod',
-    :s3_credentials => {
-      :access_key_id => 'AKIAIYLNZCHSQSVA2WRQ',
-      :secret_access_key => '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'
-    }
-    #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml"
+    :path => ':attachment/:id/:style.:extension',
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml"
   
   validates_presence_of :title, :body_html
   

@@ -1,4 +1,8 @@
 class SiteconfigController < ApplicationController
+  def show
+    @siteconfig = Siteconfig.instance
+  end
+
   def edit
     @siteconfig = Siteconfig.instance
   end
@@ -9,9 +13,10 @@ class SiteconfigController < ApplicationController
     #Rails.logger.debug "Siteconfig.instance.public_methods = #{Siteconfig.instance.public_methods.sort.to_yaml}"
 
     if Siteconfig.instance.update_attributes(params[:siteconfig])
-      redirect_to "/pages/admin", :notice  => "Successfully updated site configuration."
+      redirect_to siteconfig_path(1), :notice  => "Successfully updated site configuration."
     else
       render :action => 'edit'
     end
   end
+
 end

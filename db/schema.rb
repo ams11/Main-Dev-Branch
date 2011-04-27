@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422234111) do
+ActiveRecord::Schema.define(:version => 20110425120142) do
 
   create_table "siteconfigs", :force => true do |t|
     t.string   "hero_url"
@@ -19,6 +19,22 @@ ActiveRecord::Schema.define(:version => 20110422234111) do
     t.string   "sidekick_url_3"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "hero_picture_file_name"
+    t.string   "hero_picture_content_type"
+    t.integer  "hero_picture_file_size"
+    t.datetime "hero_picture_updated_at"
+    t.string   "sidekick_picture_1_file_name"
+    t.string   "sidekick_picture_1_content_type"
+    t.integer  "sidekick_picture_1_file_size"
+    t.datetime "sidekick_picture_1_updated_at"
+    t.string   "sidekick_picture_2_file_name"
+    t.string   "sidekick_picture_2_content_type"
+    t.integer  "sidekick_picture_2_file_size"
+    t.datetime "sidekick_picture_2_updated_at"
+    t.string   "sidekick_picture_3_file_name"
+    t.string   "sidekick_picture_3_content_type"
+    t.integer  "sidekick_picture_3_file_size"
+    t.datetime "sidekick_picture_3_updated_at"
   end
 
   create_table "sproduct_variants", :force => true do |t|

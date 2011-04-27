@@ -1,0 +1,45 @@
+- content_for :head do
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+
+%div{:style => "margin:10px; font-size:75%"}
+  %h1 Display Site Configuration
+  
+  %div.span-18
+    %fieldset
+      %legend Site Configuration
+      %table
+        %thead
+          %tr
+            %th Description
+            %th Link
+            %th Picture
+        %tbody
+          %tr
+            %td Hero Url
+            %td= link_to @siteconfig.hero_url
+            %td= image_tag @siteconfig.hero_picture.url, :style => "height:75px"
+          %tr
+            %td Sidekick Url 1
+            %td= link_to @siteconfig.sidekick_url_1
+            %td= image_tag @siteconfig.sidekick_picture_1.url, :style => "height:75px"
+          %tr
+            %td Sidekick Url 2
+            %td= link_to @siteconfig.sidekick_url_2
+            %td= image_tag @siteconfig.sidekick_picture_2.url, :style => "height:75px"
+          %tr
+            %td Sidekick Url 3
+            %td= link_to @siteconfig.sidekick_url_3
+            %td= image_tag @siteconfig.sidekick_picture_3.url, :style => "height:75px"
+  %div.span-6.last
+  
+  %div.span-18.prepend-1
+    = link_to "Edit", edit_siteconfig_path(1)
+  %div.span-7.last
+
+  %div.span-24{:style => "margin-top:50px"}
+    %hr
+    %h1 Siteconfig#show
+    %p Find me in app/views/siteconfig/show.html.haml
