@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   filter_access_to :all
 
   def home
+    @siteconfig = Siteconfig.instance
   end
 
   def visitor

@@ -2,11 +2,11 @@
 %div{:style => "margin:0px 10px"}
 
   %div{:style => "width:770px; height:457px; margin:0px 10px 10px 0px; float:left; position:relative"}
-    %img{:style => "position: absolute; left:7px; top:8px", :src => "images/hero.jpg", :atl => ""}
-    %img{:style => "position: absolute; left:559px; top:8px", :src => "images/sidekick1.png", :atl => ""}
-    %img{:style => "position: absolute; left:559px; top:155px", :src => "images/sidekick2.png", :atl => ""}
-    %img{:style => "position: absolute; left:559px; top:302px", :src => "images/sidekick3.png", :atl => ""}
-    %img{:style => "position:absolute; left:0px; top:0px", :src => "images/image-overlay.png", :atl => ""}
+    = link_to image_tag(@siteconfig.hero_picture.url), @siteconfig.hero_url, :style => "position: absolute; left:7px; top:8px", :alt => "Hero Image"
+    = link_to image_tag(@siteconfig.sidekick_picture_1.url), @siteconfig.sidekick_url_1, :style => "position: absolute; left:559px; top:8px", :alt => "Sidekick 1 Image"
+    = link_to image_tag(@siteconfig.sidekick_picture_2.url), @siteconfig.sidekick_url_2, :style => "position: absolute; left:559px; top:155px", :alt => "Sidekick 1 Image"
+    = link_to image_tag(@siteconfig.sidekick_picture_3.url), @siteconfig.sidekick_url_3, :style => "position: absolute; left:559px; top:302px", :alt => "Sidekick 1 Image"
+    -#%img{:style => "position:absolute; left:0px; top:0px", :src => "images/image-overlay.png", :alt => ""}
 
   %div{:style => "width:150px; height:300px; margin:10px; border:1px solid black; float:left"}
     Top Ten
