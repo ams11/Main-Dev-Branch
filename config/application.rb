@@ -39,4 +39,10 @@ module V2
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
   end
+
+  Rails.application.config.middleware.use ExceptionNotifier, 
+    :email_prefix => "[ERROR]",
+    :sender_address => %{"Notifier" <notifier@gmail.com>},
+    :exception_recipients => %w{joelmcconaughy@gmail.com}
+  
 end
