@@ -10,16 +10,19 @@ product_types:
   - Beanies
   - Custom hats
   sizes:
+  - 'All'
   - 'S'
   - 'M'
   - 'L'
   - 'XL'
-  - 'XXL'
-  - 'XXXL'
+  - '2XL'
+  - '3XL'
   - '6 5/8'
   - '6 3/4'
   - '6 7/8'
   - '6'
+  - '7'
+  - '7 1/8'
   - '7 1/4'
   - '7 3/8'
   - '7 1/2'
@@ -42,6 +45,7 @@ product_types:
   - Hoodies
   - Sweaters
   - Jackets
+  - Blazers
   sizes:
   - '2XS'
   - 'XS'
@@ -113,7 +117,7 @@ product_types:
   - '16'
   - 'Shaq'
 -
-  product_type: Accessories/Other
+  product_type: Accessories-Other
   commission_percent: 30.00
   product_categories:
   - Watches
@@ -153,7 +157,7 @@ product_types:
   - '2XL'
   - '3XL'
 -
-  product_type: 'Art/Toys/Electronics'
+  product_type: 'Art-Toys-Electronics'
   commission_percent: 25.00
   product_categories:
   - Art
@@ -171,23 +175,49 @@ product_tags:
   - All
   color:
   - 
-    - Red
+    - Greens
     - '#ff0000'  
   - 
-    - Green
+    - Blues
     - '#00ff00'
   - 
-    - Blue
+    - Purples
     - '#0000ff'
   - 
-    - White
+    - Reds
     - '#ffffff'
   - 
-    - Black
+    - Pinks
+    - '#000000'
+  - 
+    - Beiges
+    - '#000000'
+  - 
+    - Browns
+    - '#000000'
+  - 
+    - Yellows
+    - '#000000'
+  - 
+    - Oranges
+    - '#000000'
+  - 
+    - Blacks
+    - '#000000'
+  - 
+    - Whites
+    - '#000000'
+  - 
+    - Grays
+    - '#000000'
+  - 
+    - Gold
+    - '#000000'
+  - 
+    - Silver
     - '#000000'
   brand:
-  - Puma
-  - Nike
+  - 
   onsale:
   - False
   - True

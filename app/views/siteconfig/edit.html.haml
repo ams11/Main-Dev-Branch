@@ -1,8 +1,15 @@
+- content_for :head do
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+
 %div{:style => "margin:10px"}
   %h1 Editing Site Configuration
 
-  %div.span-24
+  %div.span-22
     = render 'form'
+  %div.span-2.last
 
   %div.span-24{:style => "margin-top:50px"}
     %hr

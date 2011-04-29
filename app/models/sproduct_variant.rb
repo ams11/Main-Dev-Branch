@@ -5,7 +5,7 @@ class SproductVariant < ActiveRecord::Base
   
 end
 
-# == Schema Information
+# == Schema Informations
 #
 # Table name: sproduct_variants
 #

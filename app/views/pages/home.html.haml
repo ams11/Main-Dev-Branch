@@ -1,15 +1,78 @@
+- content_for :head do
+  = stylesheet_link_tag 'white/jquery-ui-1.8.11.custom.css'
+  = javascript_include_tag 'white/jquery-ui-1.8.11.custom.min.js'
+  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
+  = stylesheet_link_tag "blueprint/print", :media => "print"
+  /[if lt IE 8]
+    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  :javascript
+    $(function() {
+      $("#accordion").accordion({
+        event: "mouseover"
+      });
+      
+      rotateHero();
+    });
+    
+    var current_sidekick = 2;
+    function rotateHero() {
+      $('.sidekicktitle').removeClass('activeSidekick');
+      current_sidekick = (current_sidekick + 1) % 3;
+      //alert("current_sidekick=" + current_sidekick);
+      //alert("size=" + $('.sidekicktitle').size());
+      //alert("curr=" + $('.sidekicktitle').get(current_sidekick));
+      $('.sidekicktitle').get(current_sidekick).addClass('activeSidekick');
+      //alert("after");
+      setTimeout("rotateHero()", 10000);
+    }
 
-%div{:style => "margin:0px 10px"}
+%div#home{:style => "margin:0px 10px"}
 
-  %div{:style => "width:770px; height:457px; margin:0px 10px 10px 0px; float:left; position:relative"}
-    = link_to image_tag(@siteconfig.hero_picture.url), @siteconfig.hero_url, :style => "position: absolute; left:7px; top:8px", :alt => "Hero Image"
-    = link_to image_tag(@siteconfig.sidekick_picture_1.url), @siteconfig.sidekick_url_1, :style => "position: absolute; left:559px; top:8px", :alt => "Sidekick 1 Image"
-    = link_to image_tag(@siteconfig.sidekick_picture_2.url), @siteconfig.sidekick_url_2, :style => "position: absolute; left:559px; top:155px", :alt => "Sidekick 1 Image"
-    = link_to image_tag(@siteconfig.sidekick_picture_3.url), @siteconfig.sidekick_url_3, :style => "position: absolute; left:559px; top:302px", :alt => "Sidekick 1 Image"
-    -#%img{:style => "position:absolute; left:0px; top:0px", :src => "images/image-overlay.png", :alt => ""}
+  %div#hero{:style => "width:770px; height:457px; margin:0px 10px 10px 0px; float:left; position:relative"}
+    = link_to(image_tag(@siteconfig.hero_picture_big_1.url), @siteconfig.hero_link_1, :style => "position: absolute; left:7px; top:8px", :alt => "Big Hero") if !@siteconfig.hero_picture_big_1.nil?
+    %div{:style => "position: absolute; height:150px; left:567px; top:8px"}
+      = image_tag(@siteconfig.hero_picture_small_1.url, :style => "display:block") if !@siteconfig.hero_picture_small_1.nil?
+      %div.sidekicktitle= @siteconfig.hero_title_1
+    %div{:style => "position: absolute; left:567px; top:159px"}
+      = image_tag(@siteconfig.hero_picture_small_2.url, :style => "display:block") if !@siteconfig.hero_picture_small_2.nil?
+      %div.sidekicktitle= @siteconfig.hero_title_2
+    %div{:style => "position: absolute; left:567px; top:310px"}
+      = image_tag(@siteconfig.hero_picture_small_3.url, :style => "display:block") if !@siteconfig.hero_picture_small_3.nil?
+      %div.sidekicktitle= @siteconfig.hero_title_3
+    /%img{:style => "position:absolute; left:0px; top:0px", :src => "images/image-overlay.png", :alt => ""}
 
-  %div{:style => "width:150px; height:300px; margin:10px; border:1px solid black; float:left"}
-    Top Ten
+  %div#topten{:style => "width:150px; margin:10px; float:left"}
+    %div#accordion
+      %h3{}= @siteconfig.topten_title_1
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_1.url) if !@siteconfig.topten_picture_1.nil?
+      %h3{}= @siteconfig.topten_title_2 
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_2.url) if !@siteconfig.topten_picture_2.nil?
+      %h3{}= @siteconfig.topten_title_3
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_3.url) if !@siteconfig.topten_picture_3.nil?
+      %h3{}= @siteconfig.topten_title_4
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_4.url) if !@siteconfig.topten_picture_4.nil?
+      %h3{}= @siteconfig.topten_title_5
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_5.url) if !@siteconfig.topten_picture_5.nil?
+      %h3{}= @siteconfig.topten_title_6
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_6.url) if !@siteconfig.topten_picture_6.nil?
+      %h3{}= @siteconfig.topten_title_7
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_7.url) if !@siteconfig.topten_picture_7.nil?
+      %h3{}= @siteconfig.topten_title_8
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_8.url) if !@siteconfig.topten_picture_8.nil?
+      %h3{}= @siteconfig.topten_title_9
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_9.url) if !@siteconfig.topten_picture_9.nil?
+      %h3{}= @siteconfig.topten_title_10
+      %div.tt
+        = image_tag(@siteconfig.topten_picture_10.url) if !@siteconfig.topten_picture_10.nil?
 
   %div{:style => "clear:both"}
 

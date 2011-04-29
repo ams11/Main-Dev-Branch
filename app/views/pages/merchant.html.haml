@@ -20,7 +20,7 @@
       %li{:style => "margin-left:10px"}= link_to "List Products (#{@countProducts})", sproducts_path
       %li{:style => "margin-left:10px"}= link_to "New Product", new_sproduct_path
   %div.span-12.last
-    -#
+    /
       %h2 Store
       %ul
         %li{:style => "margin-left:10px"}= "Total Products: #{@countProducts}"
@@ -35,12 +35,11 @@
       %li{:style => "margin-left:10px"}
         %span{:style => "color:red"}= "Late Orders: #{'42'}"
   %div.span-12.last
-    -#
+    /
       %h2 Orders
       %ul
         %li{:style => "margin-left:10px"}= "Open Orders: #{@countOpenOrders}"
 
--#
   %div.span-24{:style => "margin-top:50px"}
     %hr
     %h1 Dev stuff
