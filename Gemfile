@@ -20,7 +20,6 @@ gem 'jquery-rails'
 gem 'paperclip'
 gem 'aws-s3'
 gem 'acts_as_singleton'
-gem 'exception_notification', :require => 'exception_notifier'
 
 # Use unicorn as the web server
 # gem 'unicorn'

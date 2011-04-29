@@ -1,4 +1,19 @@
 
+#home #topten div.tt {
+  width:150px; 
+  height:70px; 
+  padding:0; 
+  overflow: hidden;
+} 
+
+#home #hero div.sidekicktitle {
+  height:40px; 
+  background-color:#7f7f7f;
+}
+.activeSidekick {
+  background-color:red;
+}
+
 #header-topnav {
 	height: 16px;
 	padding: 8px 0px 11px 0px;

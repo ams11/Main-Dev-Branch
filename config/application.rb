@@ -40,9 +40,4 @@ module V2
     config.filter_parameters += [:password]
   end
 
-  Rails.application.config.middleware.use ExceptionNotifier, 
-    :email_prefix => "[ERROR]",
-    :sender_address => %{"Notifier" <notifier@gmail.com>},
-    :exception_recipients => %w{joelmcconaughy@gmail.com}
-  
 end

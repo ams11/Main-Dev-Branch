@@ -3,3 +3,15 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      sproduct_variant: "Product Variant"
+      sproduct: "Product"
+    attributes:
+      sproduct:
+        body_html: "Description"
+    errors:
+      template:
+        header:
+          one: "1 error prohibited this %{model} from being saved"
+          other: "%{count} errors prohibited this %{model} from being saved"

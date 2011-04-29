@@ -42,7 +42,6 @@ GEM
     declarative_authorization (0.5.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    exception_notification (2.4.0)
     haml (3.0.25)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -108,7 +107,6 @@ DEPENDENCIES
   authlogic
   aws-s3
   declarative_authorization
-  exception_notification
   haml
   haml-rails
   jquery-rails

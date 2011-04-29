@@ -7,33 +7,46 @@
 %div{:style => "margin:10px; font-size:75%"}
   %h1 Display Site Configuration
   
-  %div.span-18
+  %div.span-22
     %fieldset
       %legend Site Configuration
       %table
         %thead
           %tr
-            %th Description
+            %th
+            %th Title/Description
             %th Link
-            %th Picture
+            %th Small Picture
+            %th Big Picture
         %tbody
           %tr
-            %td Hero Url
-            %td= link_to @siteconfig.hero_url
-            %td= image_tag @siteconfig.hero_picture.url, :style => "height:75px"
+            %td Hero 1
+            %td
+              = @siteconfig.hero_title_1
+              %br/
+              = @siteconfig.hero_desc_1
+            %td= link_to @siteconfig.hero_link_1
+            %td= image_tag @siteconfig.hero_picture_small_1.url, :style => "height:75px" if !@siteconfig.hero_picture_small_1.nil?
+            %td= image_tag @siteconfig.hero_picture_big_1.url, :style => "height:75px" if !@siteconfig.hero_picture_big_1.nil?
           %tr
-            %td Sidekick Url 1
-            %td= link_to @siteconfig.sidekick_url_1
-            %td= image_tag @siteconfig.sidekick_picture_1.url, :style => "height:75px"
+            %td Hero 2
+            %td
+              = @siteconfig.hero_title_2
+              %br/
+              = @siteconfig.hero_desc_2
+            %td= link_to @siteconfig.hero_link_2
+            %td= image_tag @siteconfig.hero_picture_small_2.url, :style => "height:75px" if !@siteconfig.hero_picture_small_2.nil?
+            %td= image_tag @siteconfig.hero_picture_big_2.url, :style => "height:75px" if !@siteconfig.hero_picture_big_2.nil?
           %tr
-            %td Sidekick Url 2
-            %td= link_to @siteconfig.sidekick_url_2
-            %td= image_tag @siteconfig.sidekick_picture_2.url, :style => "height:75px"
-          %tr
-            %td Sidekick Url 3
-            %td= link_to @siteconfig.sidekick_url_3
-            %td= image_tag @siteconfig.sidekick_picture_3.url, :style => "height:75px"
-  %div.span-6.last
+            %td Hero 3
+            %td
+              = @siteconfig.hero_title_3
+              %br/
+              = @siteconfig.hero_desc_3
+            %td= link_to @siteconfig.hero_link_3
+            %td= image_tag @siteconfig.hero_picture_small_3.url, :style => "height:75px" if !@siteconfig.hero_picture_small_3.nil?
+            %td= image_tag @siteconfig.hero_picture_big_3.url, :style => "height:75px" if !@siteconfig.hero_picture_big_3.nil?
+  %div.span-2.last
   
   %div.span-18.prepend-1
     = link_to "Edit", edit_siteconfig_path(1)
