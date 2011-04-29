@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>config/locales/en.yml</string>
+	<string>app/views/sproducts/_form.html.haml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -11,8 +11,6 @@
 			<string>Gemfile</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -37,34 +35,44 @@
 			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
 			<key>sourceDirectory</key>
 			<string>public</string>
+		</dict>
+		<dict>
+			<key>expanded</key>
+			<true/>
+			<key>name</key>
+			<string>db</string>
+			<key>regexFolderFilter</key>
+			<string>!.*/(\.[^/]*|CVS|_darcs|_MTN|\{arch\}|blib|.*~\.nib|.*\.(framework|app|pbproj|pbxproj|xcode(proj)?|bundle))$</string>
+			<key>sourceDirectory</key>
+			<string>db</string>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
-		<key>config/locales/en.yml</key>
+		<key>app/views/sproducts/_form.html.haml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>5</integer>
+				<integer>111</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>97</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>config/locales/en.yml</string>
+		<string>app/views/sproducts/_form.html.haml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{203, 68}, {1067, 710}}</string>
+	<string>{{203, 70}, {979, 708}}</string>
 </dict>
 </plist>

@@ -2,16 +2,21 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  activerecord:
-    models:
-      sproduct_variant: "Product Variant"
-      sproduct: "Product"
-    attributes:
-      sproduct:
-        body_html: "Description"
+    activerecord:
+        models:
+            sproduct: "Product"
+            sproduct_variant: "Product SKU"
+        attributes:
+            sproduct:
+                body_html: "Description"
+                onsale: "On Sale"
+            sproduct_variant:
+                sku: "SKU"
+                price: "Price"
+        errors:
+            messages:
     errors:
-      template:
-        header:
-          one: "1 error prohibited this %{model} from being saved"
-          other: "%{count} errors prohibited this %{model} from being saved"
+        format: "%{attribute} %{message}"
+        
+        
+    

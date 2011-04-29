@@ -97,26 +97,27 @@
       $('.removesku:first').hide();
     }
     
-%div{:id => "current_action", :action => @current_action, :style => "display:none"}
+%div{:id => "current_action", :action => @current_action, :style => "display:block"}= "@current_action = #{@current_action}"
     
 = form_for @sproduct, :html => { :multipart => true} do |f|
   -if @sproduct.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@sproduct.errors.count, "error")} prohibited this sproduct from being saved:"
+      %h2= "#{pluralize(@sproduct.errors.count, "error")} prohibited this #{Sproduct.human_name} from being saved:"
       %ul
         - @sproduct.errors.full_messages.each do |msg|
           %li= msg
 
   %table
-    %tr
-      .field
-        %td= f.label :id
-        %td= f.text_field :id, options = {:disabled => "disabled"}
+    -if @current_action != "new" && @current_action != "create"
+      %tr
+        .field
+          %td= f.label :id
+          %td= f.text_field :id, options = {:disabled => "disabled"}
     %tr
       .field
         %td= f.label :product_type
         %td
-          - if @current_action == "new"
+          - if @current_action == "new" || @current_action == "create"
             = select("sproduct", "product_type", MERCHANT_CONFIG['product_types'].collect {|x| x['product_type']})
           - else
             = f.text_field :product_type, options = {:disabled => "disabled"}
