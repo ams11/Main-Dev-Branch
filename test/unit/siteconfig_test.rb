@@ -7,6 +7,7 @@ class SiteconfigTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: siteconfigs
@@ -106,5 +107,6 @@ end
 #  topten_picture_10_content_type    :string(255)
 #  topten_picture_10_file_size       :integer
 #  topten_picture_10_updated_at      :datetime
+#  topten_link_3                     :string(255)
 #
 

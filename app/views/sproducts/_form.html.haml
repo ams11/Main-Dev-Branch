@@ -97,7 +97,7 @@
       $('.removesku:first').hide();
     }
     
-%div{:id => "current_action", :action => @current_action, :style => "display:block"}= "@current_action = #{@current_action}"
+%div{:id => "current_action", :action => @current_action, :style => "display:none"}= "@current_action = #{@current_action}"
     
 = form_for @sproduct, :html => { :multipart => true} do |f|
   -if @sproduct.errors.any?
@@ -177,6 +177,7 @@
   - f.fields_for :sproduct_variants do |builder|
     = render 'sproduct_variant_fields', :f => builder
   .field
-    = link_to_add_fields('Add SKU', f, :sproduct_variants)
+    = link_to_add_fields('Add another SKU or Size', f, :sproduct_variants)
+  %br/
   .actions
     = f.submit 'Save'

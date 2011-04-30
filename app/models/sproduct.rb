@@ -39,6 +39,7 @@ class Sproduct < ActiveRecord::Base
     if ret
       # At this point, the sproduct and attached sproduct_variants have been saved.
       is_new_shopify_product = self.shopify_product_id.to_s.blank?
+      Rails.logger.debug "is_new_shopify_product = #{is_new_shopify_product}"
       
       shopify_attributes = @attributes.dup
       add_tags_to_attributes!(shopify_attributes)
@@ -46,7 +47,7 @@ class Sproduct < ActiveRecord::Base
       
       shopify_attributes["options"] = [{"name" => "Size"}]
       shopify_attributes["variants"] = @sproduct_variants.collect do |variant|
-        { "sku" => "#{variant.sku}", "price" => "#{variant.price}", "option1" => "#{variant.size}" }
+        { "sku" => "#{variant.sku}", "price" => "#{variant.price}", "compare_to_price" => "#{variant.compare_to_price}", "option1" => "#{variant.size}" }
       end
       shopify_attributes["images"] = [{"src" => self.picture.url}] if self.picture.exists?
       
@@ -65,11 +66,14 @@ class Sproduct < ActiveRecord::Base
           Sproduct.find_or_create_custom_collection("#{self.product_type}-#{self.product_category}").add_product(p)
         end
       else
-        Rails.logger.debug "shopify_attrbiutes = #{shopify_attributes.to_yaml}"
+        Rails.logger.debug "shopify_attributes(before) = #{shopify_attributes}"
         p = ShopifyAPI::Product.find(self.shopify_product_id, :params => {  })
         if p
+          # Must delete existing product variants before readding the edited ones.
+          x = p.variants.clear
+          x = p.save
           x = p.update_attributes(shopify_attributes)
-          Rails.logger.debug "x = #{x.to_yaml}"
+          Rails.logger.debug "update-attributes = #{x.to_yaml} ======================"
         end
     end
       

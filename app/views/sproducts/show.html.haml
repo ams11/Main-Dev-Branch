@@ -55,8 +55,8 @@
   %p
     %ol
       - for variant in @sproduct.sproduct_variants
-        %li= "sku=#{variant.sku}, price=#{number_to_currency(variant.price)}, size=#{variant.size}"
+        %li= "sku=#{variant.sku}, price=#{number_to_currency(variant.price)}, compare_to_price=#{number_to_currency(variant.compare_to_price)}, size=#{variant.size}"
     
   = link_to 'Edit', edit_sproduct_path(@sproduct)
   \|
-  = link_to 'Back', sproducts_path
+  = link_to 'View Products', sproducts_path
