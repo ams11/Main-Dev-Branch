@@ -1,105 +1,105 @@
-
 - content_for :head do
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "portal.css"
 
-%div{:style => "margin:10px; font-size:75%"}
+%div{:style => "margin:10px"}
 
-  %h1 Edit Order
+  %h2 Edit Order
+  .form-box
+    %div
   
-  = form_for @sorder do |f|
-    = f.hidden_field :shopify_id
+      = form_for @sorder do |f|
+        = f.hidden_field :shopify_id
 
-    %div.span-24
-      -if @sorder.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@sorder.errors.count, "error")} prohibited this sproduct from being saved:"
-          %ul
-            - @sorder.errors.full_messages.each do |msg|
-              %li= msg
+        %div
+          -if @sorder.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@sorder.errors.count, "error")} prohibited this sproduct from being saved:"
+              %ul
+                - @sorder.errors.full_messages.each do |msg|
+                  %li= msg
 
-    %div.span-8.append-1
-      %fieldset
-        %legend Order Header
-        %table
-          %tr
-            %td Order Number
-            %td= @sorder.order.name
-          %tr
-            %td Order Date
-            %td= @sorder.order.created_at.strftime("%Y-%m-%d %I:%M%p")
-          %tr
-            %td Order Status
-            %td= @sorder.order.unshipped_items_for_vendor ? "open" : "fulfilled"
-          %tr
-            %td Subtotal
-            %td= number_to_currency @sorder.order.total_line_items_price_vendor
-          %tr
-            %td Shipping
-            %td= number_to_currency @sorder.order.shipping_vendor
-          %tr
-            %td ORDER TOTAL
-            %td= number_to_currency @sorder.order.total_price_vendor
-      
-    %div.span-15.last
-      %fieldset
-        %legend Shipping Address
-        %table
-          %tr
-            %td Name
-            %td= @sorder.order.shipping_address.name
-          %tr
-            %td Address 1
-            %td= @sorder.order.shipping_address.address1
-          - if !@sorder.order.shipping_address.address2.nil? && !@sorder.order.shipping_address.address2.empty?
-            %tr
-              %td Address 2
-              %td= @sorder.order.shipping_address.address2
-          %tr
-            %td City
-            %td= @sorder.order.shipping_address.city
-          %tr
-            %td State
-            %td= @sorder.order.shipping_address.province_code
-          %tr
-            %td ZIP Code
-            %td= @sorder.order.shipping_address.zip
-          %tr
-            %td Phone
-            %td= @sorder.order.shipping_address.phone
-          %tr
-            %td Tracking Number
-            %td= f.text_field :tracking_number
-      
-    %div.span-24
-      %fieldset
-        %legend Order Items
-        %table
-          %thead
-            %tr
-              %th Qty
-              %th SKU
-              %th Description
-              %th Size
-              %th Status
-              %th Mark as Shipped
-          %tbody
-            - @sorder.order.line_items.each do |li|
+        .left
+          %fieldset
+            %legend Order Header
+            %table
               %tr
-                %td= li.quantity
-                %td= li.sku
-                %td= li.title
-                %td= li.variant_title
-                %td= li.fulfillment_status
-                %td
-                  = check_box_tag("sorder[shipped][#{li.id}]", true) if li.fulfillment_status != "fulfilled" 
+                %td Order Number
+                %td= @sorder.order.name
+              %tr
+                %td Order Date
+                %td= @sorder.order.created_at.strftime("%Y-%m-%d %I:%M%p")
+              %tr
+                %td Order Status
+                %td= @sorder.order.unshipped_items_for_vendor ? "open" : "fulfilled"
+              %tr
+                %td Subtotal
+                %td= number_to_currency @sorder.order.total_line_items_price_vendor
+              %tr
+                %td Shipping
+                %td= number_to_currency @sorder.order.shipping_vendor
+              %tr
+                %td ORDER TOTAL
+                %td= number_to_currency @sorder.order.total_price_vendor
+      
+        .left
+          %fieldset
+            %legend Shipping Address
+            %table
+              %tr
+                %td Name
+                %td= @sorder.order.shipping_address.name
+              %tr
+                %td Address 1
+                %td= @sorder.order.shipping_address.address1
+              - if !@sorder.order.shipping_address.address2.nil? && !@sorder.order.shipping_address.address2.empty?
+                %tr
+                  %td Address 2
+                  %td= @sorder.order.shipping_address.address2
+              %tr
+                %td City
+                %td= @sorder.order.shipping_address.city
+              %tr
+                %td State
+                %td= @sorder.order.shipping_address.province_code
+              %tr
+                %td ZIP Code
+                %td= @sorder.order.shipping_address.zip
+              %tr
+                %td Phone
+                %td= @sorder.order.shipping_address.phone
+              %tr
+                %td Tracking Number
+                %td= f.text_field :tracking_number
+      
+        .clear
+        
+        %div
+          %fieldset
+            %legend Order Items
+            %table
+              %thead
+                %tr
+                  %th Qty
+                  %th SKU
+                  %th Description
+                  %th Size
+                  %th Status
+                  %th Mark as Shipped
+              %tbody
+                - @sorder.order.line_items.each do |li|
+                  %tr
+                    %td= li.quantity
+                    %td= li.sku
+                    %td= li.title
+                    %td= li.variant_title
+                    %td= li.fulfillment_status
+                    %td
+                      = check_box_tag("sorder[shipped][#{li.id}]", true) if li.fulfillment_status != "fulfilled" 
   
-    %div.span-24
-      = f.submit "Save"
+        %div.span-24
+          = f.submit "Save", :class => "inputsubmit"
   
-  %div.span-24{:style => "margin-top:50px"}
+  %div.span-24{:style => "margin-top:100px"}
     %hr
     %h1 Dev stuff
     %p Find me in app/views/sorders/edit.html.haml

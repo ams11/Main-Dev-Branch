@@ -43,6 +43,14 @@ class SproductsController < ApplicationController
   # POST /sproducts
   # POST /sproducts.xml
   def create
+    Rails.logger.debug "sproduct.create========================================="
+    Rails.logger.debug "params = #{params.to_yaml}"
+    
+    if params[:commit] == "Cancel" then
+      redirect_to sproducts_path
+      return
+    end
+    
     @sproduct = Sproduct.new(params[:sproduct])
 
     respond_to do |format|

@@ -1,13 +1,10 @@
 - content_for :head do
   = stylesheet_link_tag 'white/jquery-ui-1.8.11.custom.css'
   = javascript_include_tag 'white/jquery-ui-1.8.11.custom.min.js'
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "home.css"
   :javascript
     $(function() {
-      $("#accordion").accordion({
+      $("#sidebar").accordion({
         event: "mouseover"
       });
       
@@ -16,80 +13,93 @@
     
     var current_sidekick = 2;
     function rotateHero() {
-      $('.sidekicktitle').removeClass('activeSidekick');
       current_sidekick = (current_sidekick + 1) % 3;
-      //alert("current_sidekick=" + current_sidekick);
-      //alert("size=" + $('.sidekicktitle').size());
-      //alert("curr=" + $('.sidekicktitle').get(current_sidekick));
-      $('.sidekicktitle').get(current_sidekick).addClass('activeSidekick');
-      //alert("after");
-      setTimeout("rotateHero()", 10000);
+      
+      $('#sidekick div').removeClass('boxActive').addClass('box');
+      $('#sidekick div:eq(' + current_sidekick + ')').removeClass('box').addClass('boxActive');
+      
+      //alert('text = ' + $('.post-title').text());
+      $('.post-title').text('Hero title ' + current_sidekick)
+
+      //alert('desc = ' + $('.category-link').text());
+      $('.category-link').text('Hero description ' + current_sidekick + '.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+      
+      setTimeout("rotateHero()", 3000);
     }
 
-%div#home{:style => "margin:0px 10px"}
+%div{:style => "position:relative"}
+  #template
+    = link_to(image_tag(@siteconfig.hero_picture_big_1.url), @siteconfig.hero_link_1, :class => "attachment-polaroid-image wp-post-image", :alt => "Big Hero") if !@siteconfig.hero_picture_big_1.nil?
+    .cornerLeft
+    .cornerRight
+    .clear
+    .post-container-featured
+      %h2.post-title Atlanta's Premiere Sneaker Shop
+      %p
+        %a.category-link{:title => "Uncategorized", :href => "#"}
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu mauris leo. Morbi quis elit in nulla rutrum aliquam...
+        %a.read-more{:title => "Hello world!", :href => ""} READ MORE
 
-  %div#hero{:style => "width:770px; height:457px; margin:0px 10px 10px 0px; float:left; position:relative"}
-    = link_to(image_tag(@siteconfig.hero_picture_big_1.url), @siteconfig.hero_link_1, :style => "position: absolute; left:7px; top:8px", :alt => "Big Hero") if !@siteconfig.hero_picture_big_1.nil?
-    %div{:style => "position: absolute; height:150px; left:567px; top:8px"}
-      = image_tag(@siteconfig.hero_picture_small_1.url, :style => "display:block") if !@siteconfig.hero_picture_small_1.nil?
-      %div.sidekicktitle= @siteconfig.hero_title_1
-    %div{:style => "position: absolute; left:567px; top:159px"}
-      = image_tag(@siteconfig.hero_picture_small_2.url, :style => "display:block") if !@siteconfig.hero_picture_small_2.nil?
-      %div.sidekicktitle= @siteconfig.hero_title_2
-    %div{:style => "position: absolute; left:567px; top:310px"}
-      = image_tag(@siteconfig.hero_picture_small_3.url, :style => "display:block") if !@siteconfig.hero_picture_small_3.nil?
-      %div.sidekicktitle= @siteconfig.hero_title_3
-    /%img{:style => "position:absolute; left:0px; top:0px", :src => "images/image-overlay.png", :alt => ""}
 
-  %div#topten{:style => "width:150px; margin:10px; float:left"}
-    %div#accordion
-      %h3{}= @siteconfig.topten_title_1
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_1.url) if !@siteconfig.topten_picture_1.nil?
-      %h3{}= @siteconfig.topten_title_2 
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_2.url) if !@siteconfig.topten_picture_2.nil?
-      %h3{}= @siteconfig.topten_title_3
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_3.url) if !@siteconfig.topten_picture_3.nil?
-      %h3{}= @siteconfig.topten_title_4
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_4.url) if !@siteconfig.topten_picture_4.nil?
-      %h3{}= @siteconfig.topten_title_5
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_5.url) if !@siteconfig.topten_picture_5.nil?
-      %h3{}= @siteconfig.topten_title_6
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_6.url) if !@siteconfig.topten_picture_6.nil?
-      %h3{}= @siteconfig.topten_title_7
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_7.url) if !@siteconfig.topten_picture_7.nil?
-      %h3{}= @siteconfig.topten_title_8
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_8.url) if !@siteconfig.topten_picture_8.nil?
-      %h3{}= @siteconfig.topten_title_9
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_9.url) if !@siteconfig.topten_picture_9.nil?
-      %h3{}= @siteconfig.topten_title_10
-      %div.tt
-        = image_tag(@siteconfig.topten_picture_10.url) if !@siteconfig.topten_picture_10.nil?
+  #sidekick
+    .boxActive
+      - if !@siteconfig.hero_picture_small_1.nil?
+        %a{:href => "#{@siteconfig.hero_link_1}"}
+          = image_tag(@siteconfig.hero_picture_small_1.url)
+          %h3.sidekick-title= "#{@siteconfig.hero_title_1}"
+    .box.space
+      - if !@siteconfig.hero_picture_small_2.nil?
+        %a{:href => "#{@siteconfig.hero_link_2}"}
+          = image_tag(@siteconfig.hero_picture_small_2.url)
+          %h3.sidekick-title= "#{@siteconfig.hero_title_2}"
+    .box.space
+      - if !@siteconfig.hero_picture_small_3.nil?
+        %a{:href => "#{@siteconfig.hero_link_3}"}
+          = image_tag(@siteconfig.hero_picture_small_3.url)
+          %h3.sidekick-title= "#{@siteconfig.hero_title_3}"
 
-  %div{:style => "clear:both"}
+  #sidebar
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_1}"}= "#{@siteconfig.topten_title_1}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_1.url) if !@siteconfig.topten_picture_1.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_2}"}= "#{@siteconfig.topten_title_2}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_2.url) if !@siteconfig.topten_picture_2.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_3}"}= "#{@siteconfig.topten_title_3}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_3.url) if !@siteconfig.topten_picture_3.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_4}"}= "#{@siteconfig.topten_title_4}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_4.url) if !@siteconfig.topten_picture_4.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_5}"}= "#{@siteconfig.topten_title_5}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_5.url) if !@siteconfig.topten_picture_5.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_6}"}= "#{@siteconfig.topten_title_6}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_6.url) if !@siteconfig.topten_picture_3.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_7}"}= "#{@siteconfig.topten_title_7}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_7.url) if !@siteconfig.topten_picture_7.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_8}"}= "#{@siteconfig.topten_title_8}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_8.url) if !@siteconfig.topten_picture_8.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_9}"}= "#{@siteconfig.topten_title_9}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_9.url) if !@siteconfig.topten_picture_9.nil?
+    %h3.ui-accordion-header-1
+      %a{:href => "#{@siteconfig.topten_link_10}"}= "#{@siteconfig.topten_title_10}"
+    .ui-widget-content
+      = image_tag(@siteconfig.topten_picture_10.url) if !@siteconfig.topten_picture_10.nil?
 
-  %hr
-  %h1 Pages#home
-  %p Find me in app/views/pages/home.html.haml
 
-  = render 'users/showroles'
+%div{:style => "clear:both"}
 
-  %p
-    = link_to "Visitor", pages_visitor_path
-    - if permitted_to? [:member,:merchant,:admin]
-      = "| "
-      = link_to "Member", pages_member_path
-    - if permitted_to? [:merchant,:admin]
-      = "| "
-      = link_to "Merchant", pages_merchant_path
-    - if permitted_to? :admin
-      = "| "
-      = link_to "Admin", pages_admin_path

@@ -1,13 +1,9 @@
 
 - content_for :head do
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "portal.css"
 
-%div{:style => "margin:10px; font-size:75%"}
-  %h1 New Product
-
-  = render 'form'
-
-  = button_to 'Cancel', sproducts_path
+%div{:style => "margin:10px"}
+  %h2 New Product
+  .form-box
+    %div
+      = render 'form'

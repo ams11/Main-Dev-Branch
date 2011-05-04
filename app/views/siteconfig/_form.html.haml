@@ -8,114 +8,111 @@
         - @siteconfig.errors.full_messages.each do |msg|
           %li= msg
 
-  %fieldset
-    %legend Heroes
-    %table
-      %tr
-        %th
-        %th Title/Description
-        %th Link
-        %th Small Picture
-        %th Big Picture
-      %tr
-        .field
-          %td Hero 1
-          %td
-            = f.text_field :hero_title_1
-            %br/
-            = f.text_field :hero_desc_1
-          %td= f.text_field :hero_link_1
-          %td= f.file_field :hero_picture_small_1
-          %td= f.file_field :hero_picture_big_1
-      %tr
-        .field
-          %td Hero 2
-          %td
-            = f.text_field :hero_title_2
-            %br/
-            = f.text_field :hero_desc_2
-          %td= f.text_field :hero_link_2
-          %td= f.file_field :hero_picture_small_2
-          %td= f.file_field :hero_picture_big_2
-      %tr
-        .field
-          %td Hero 3
-          %td
-            = f.text_field :hero_title_3
-            %br/
-            = f.text_field :hero_desc_3
-          %td= f.text_field :hero_link_3
-          %td= f.file_field :hero_picture_small_3
-          %td= f.file_field :hero_picture_big_3
+  %table
+    %tr
+      %th
+      %th Title/Description
+      %th Link
+      %th Small Picture (198x110)
+      %th Big Picture (543x292)
+    %tr
+      .field
+        %td Hero 1
+        %td
+          = f.text_field :hero_title_1
+          %br/
+          = f.text_field :hero_desc_1
+        %td= f.text_field :hero_link_1
+        %td= f.file_field :hero_picture_small_1
+        %td= f.file_field :hero_picture_big_1
+    %tr
+      .field
+        %td Hero 2
+        %td
+          = f.text_field :hero_title_2
+          %br/
+          = f.text_field :hero_desc_2
+        %td= f.text_field :hero_link_2
+        %td= f.file_field :hero_picture_small_2
+        %td= f.file_field :hero_picture_big_2
+    %tr
+      .field
+        %td Hero 3
+        %td
+          = f.text_field :hero_title_3
+          %br/
+          = f.text_field :hero_desc_3
+        %td= f.text_field :hero_link_3
+        %td= f.file_field :hero_picture_small_3
+        %td= f.file_field :hero_picture_big_3
 
-  %fieldset
-    %legend Top Ten
-    %table
-      %tr
-        %th
-        %th Title
-        %th Link
-        %th Picture
-      %tr
-        .field
-          %td 1
-          %td= f.text_field :topten_title_1
-          %td= f.text_field :topten_link_1
-          %td= f.file_field :topten_picture_1
-      %tr
-        .field
-          %td 2
-          %td= f.text_field :topten_title_2
-          %td= f.text_field :topten_link_2
-          %td= f.file_field :topten_picture_2
-      %tr
-        .field
-          %td 3
-          %td= f.text_field :topten_title_3
-          %td= f.text_field :topten_link_3
-          %td= f.file_field :topten_picture_3
-      %tr
-        .field
-          %td 4
-          %td= f.text_field :topten_title_4
-          %td= f.text_field :topten_link_4
-          %td= f.file_field :topten_picture_4
-      %tr
-        .field
-          %td 5
-          %td= f.text_field :topten_title_5
-          %td= f.text_field :topten_link_5
-          %td= f.file_field :topten_picture_5
-      %tr
-        .field
-          %td 6
-          %td= f.text_field :topten_title_6
-          %td= f.text_field :topten_link_6
-          %td= f.file_field :topten_picture_6
-      %tr
-        .field
-          %td 7
-          %td= f.text_field :topten_title_7
-          %td= f.text_field :topten_link_7
-          %td= f.file_field :topten_picture_7
-      %tr
-        .field
-          %td 8
-          %td= f.text_field :topten_title_8
-          %td= f.text_field :topten_link_8
-          %td= f.file_field :topten_picture_8
-      %tr
-        .field
-          %td 9
-          %td= f.text_field :topten_title_9
-          %td= f.text_field :topten_link_9
-          %td= f.file_field :topten_picture_9
-      %tr
-        .field
-          %td 10
-          %td= f.text_field :topten_title_10
-          %td= f.text_field :topten_link_10
-          %td= f.file_field :topten_picture_10
+  %div{:style => "height:10px"}
+  %table
+    %tr
+      %th
+      %th Title
+      %th Link
+      %th Picture (152x72)
+    %tr
+      .field
+        %td 1
+        %td= f.text_field :topten_title_1
+        %td= f.text_field :topten_link_1
+        %td= f.file_field :topten_picture_1
+    %tr
+      .field
+        %td 2
+        %td= f.text_field :topten_title_2
+        %td= f.text_field :topten_link_2
+        %td= f.file_field :topten_picture_2
+    %tr
+      .field
+        %td 3
+        %td= f.text_field :topten_title_3
+        %td= f.text_field :topten_link_3
+        %td= f.file_field :topten_picture_3
+    %tr
+      .field
+        %td 4
+        %td= f.text_field :topten_title_4
+        %td= f.text_field :topten_link_4
+        %td= f.file_field :topten_picture_4
+    %tr
+      .field
+        %td 5
+        %td= f.text_field :topten_title_5
+        %td= f.text_field :topten_link_5
+        %td= f.file_field :topten_picture_5
+    %tr
+      .field
+        %td 6
+        %td= f.text_field :topten_title_6
+        %td= f.text_field :topten_link_6
+        %td= f.file_field :topten_picture_6
+    %tr
+      .field
+        %td 7
+        %td= f.text_field :topten_title_7
+        %td= f.text_field :topten_link_7
+        %td= f.file_field :topten_picture_7
+    %tr
+      .field
+        %td 8
+        %td= f.text_field :topten_title_8
+        %td= f.text_field :topten_link_8
+        %td= f.file_field :topten_picture_8
+    %tr
+      .field
+        %td 9
+        %td= f.text_field :topten_title_9
+        %td= f.text_field :topten_link_9
+        %td= f.file_field :topten_picture_9
+    %tr
+      .field
+        %td 10
+        %td= f.text_field :topten_title_10
+        %td= f.text_field :topten_link_10
+        %td= f.file_field :topten_picture_10
         
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class => "inputsubmit"

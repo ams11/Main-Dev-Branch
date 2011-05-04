@@ -61,12 +61,11 @@ class Sorder
   end
   
   def find(id, params = {})
-    Rails.logger.debug "find: id = #{id}"
     order = ShopifyAPI::Order.find(id)
     @order = self.class.forVendor([order], params[:vendor]).first
     @shopify_id = @order.id
     @tracking_number = ""
-    self
+      self
   end
   
   def update_attributes(attributes = {})
@@ -84,6 +83,10 @@ class Sorder
     end unless attributes[:shipped].nil?
 
     ShopifyAPI::Fulfillment.create(params)
+  end
+  
+  def to_key
+    [@shopify_id]
   end
   
   def persisted?

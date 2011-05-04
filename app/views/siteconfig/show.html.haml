@@ -1,14 +1,11 @@
 - content_for :head do
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "portal.css"
 
 %div{:style => "margin:10px; font-size:75%"}
-  %h1 Display Site Configuration
+  %h2 Display Site Configuration
   
-  %div.span-22
-    %fieldset
+  %div.form-box
+    %div
       %legend Site Configuration
       %table
         %thead
@@ -46,11 +43,9 @@
             %td= link_to @siteconfig.hero_link_3
             %td= image_tag @siteconfig.hero_picture_small_3.url, :style => "height:75px" if !@siteconfig.hero_picture_small_3.nil?
             %td= image_tag @siteconfig.hero_picture_big_3.url, :style => "height:75px" if !@siteconfig.hero_picture_big_3.nil?
-  %div.span-2.last
   
-  %div.span-18.prepend-1
-    = link_to "Edit", edit_siteconfig_path(1)
-  %div.span-7.last
+    %div
+      = link_to "Edit", edit_siteconfig_path(1), :class => "uiButton"
 
   %div.span-24{:style => "margin-top:50px"}
     %hr

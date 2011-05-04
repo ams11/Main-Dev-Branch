@@ -2,45 +2,42 @@
 - content_for :head do
   = stylesheet_link_tag 'white/jquery-ui-1.8.11.custom.css'
   = javascript_include_tag 'white/jquery-ui-1.8.11.custom.min.js'
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "portal.css"
+
   :javascript
     $(function() {
       $('#tabs').tabs();
     })
 
-%div{:style => "margin:10px; font-size:75%"}
-  %h1 Merchant Portal
-  %br/
-  %div.span-12
-    %h2 Products
-    %ul
-      %li{:style => "margin-left:10px"}= link_to "List Products (#{@countProducts})", sproducts_path
-      %li{:style => "margin-left:10px"}= link_to "New Product", new_sproduct_path
-  %div.span-12.last
-    /
-      %h2 Store
-      %ul
-        %li{:style => "margin-left:10px"}= "Total Products: #{@countProducts}"
+%div{:style => "margin:10px"}
+  %h2 Merchant Portal
+  .form-box
+    %div
+      %div{:style => "float:left; width:400px"}
+        %h3 Products
+        %ul
+          %li= link_to "List Products (#{@countProducts})", sproducts_path
+          %li= link_to "New Product", new_sproduct_path
 
-  %div.span-24{:style => "height:20px"}
-      
-  %div.span-12
-    %h2 Orders
-    %ul
-      %li{:style => "margin-left:10px"}= link_to "Open Orders (#{@countOpenOrders})", "#{sorders_path}/open"
-      %li{:style => "margin-left:10px"}= link_to "All Orders", "#{sorders_path}"
-      %li{:style => "margin-left:10px"}
-        %span{:style => "color:red"}= "Late Orders: #{'42'}"
-  %div.span-12.last
-    /
-      %h2 Orders
-      %ul
-        %li{:style => "margin-left:10px"}= "Open Orders: #{@countOpenOrders}"
+        %h3 Orders
+        %ul
+          %li= link_to "Open Orders (#{@countOpenOrders})", "#{sorders_path}/open"
+          %li= link_to "All Orders", "#{sorders_path}"
+          %li
+            %span{:style => "color:red"}= "Late Orders: #{'42'}"
+          
+      %div{:style => "float:left; width:400px"}
+        %h3 Store
+        %ul
+          %li= "Total Products: #{@countProducts}"
 
-  %div.span-24{:style => "margin-top:50px"}
+        %h3 Orders
+        %ul
+          %li= "Open Orders: #{@countOpenOrders}"
+
+      %div{:style => "clear:both"}
+
+  %div{:style => "margin-top:100px"}
     %hr
     %h1 Dev stuff
     %p Find me in app/views/pages/merchant.html.haml

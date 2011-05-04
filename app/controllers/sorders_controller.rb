@@ -13,8 +13,10 @@ class SordersController < ApplicationController
   end
 
   def edit
-    Rails.logger.debug "edit: id = #{params[:id]}"
+    Rails.logger.debug "edit: id = #{params[:id]}=================================="
     @sorder = Sorder.new.find( params[:id], {:vendor => current_user.shopify_product_vendor} )
+    Rails.logger.debug "@sorder = #{@sorder.to_yaml}"
+    @sorder
   end
 
   def update

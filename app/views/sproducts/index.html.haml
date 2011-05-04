@@ -1,55 +1,54 @@
 
 - content_for :head do
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "portal.css"
 
-%div{:style => "margin:10px; font-size:75%"}
+%div{:style => "margin:10px"}
 
-  %h1 All Products
+  %h2 All Products
+  .form-box
+    %div
 
-  %table
-    %tr
-      %th
-      %th Id
-      %th Product type
-      %th Product category
-      %th Title
-      /
-        %th Body html
-        %th Color
-        %th Gender
-        %th Brand
-        %th Onsale
-        %th Collectible
-        %th Custom
-        %th Vendor
-      %th
-      %th
-      %th
+      %table
+        %tr
+          %th
+          %th Id
+          %th Product type
+          %th Product category
+          %th Title
+          /
+            %th Body html
+            %th Color
+            %th Gender
+            %th Brand
+            %th Onsale
+            %th Collectible
+            %th Custom
+            %th Vendor
+          %th
+          %th
+          %th
 
-    - @sproducts.each do |sproduct|
-      %tr
-        %td
-          %img{:src => "#{sproduct.picture.url}", :style => "height:32px"}
-        %td= sproduct.id
-        %td= sproduct.product_type
-        %td= sproduct.product_category
-        %td= sproduct.title
-        /
-          %td= sproduct.body_html
-          %td= sproduct.color
-          %td= sproduct.gender
-          %td= sproduct.brand
-          %td= sproduct.onsale
-          %td= sproduct.collectible
-          %td= sproduct.custom
-          %td= sproduct.vendor
-        %td= link_to 'Show', sproduct
-        %td= link_to 'Edit', edit_sproduct_path(sproduct)
-        %td= link_to 'Destroy', sproduct, :confirm => 'Are you sure?', :method => :delete
+        - @sproducts.each do |sproduct|
+          %tr
+            %td
+              %img{:src => "#{sproduct.picture.url}", :style => "height:32px"}
+            %td= sproduct.id
+            %td= sproduct.product_type
+            %td= sproduct.product_category
+            %td= sproduct.title
+            /
+              %td= sproduct.body_html
+              %td= sproduct.color
+              %td= sproduct.gender
+              %td= sproduct.brand
+              %td= sproduct.onsale
+              %td= sproduct.collectible
+              %td= sproduct.custom
+              %td= sproduct.vendor
+            %td= link_to 'Show', sproduct
+            %td= link_to 'Edit', edit_sproduct_path(sproduct)
+            %td= link_to 'Destroy', sproduct, :confirm => 'Are you sure?', :method => :delete
 
-  %br
+      %br
 
-  = link_to 'New Product', new_sproduct_path
+      = link_to 'New Product', new_sproduct_path, :class => "uiButton"

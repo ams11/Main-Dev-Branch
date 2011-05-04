@@ -1,89 +1,85 @@
-
 - content_for :head do
-  = stylesheet_link_tag "blueprint/screen", :media => "screen, projection"
-  = stylesheet_link_tag "blueprint/print", :media => "print"
-  /[if lt IE 8]
-    = stylesheet_link_tag "blueprint/ie", :media => "screen, projection"
+  = stylesheet_link_tag "portal.css"
 
-%div{:style => "margin:10px; font-size:75%"}
+%div{:style => "margin:10px"}
 
-  %h1 Display Order
+  %h2 Display Order
+  .form-box
+    %div
 
-  %div.span-8.append-1
-    %fieldset
-      %legend Order Header
-      %table
-        %tr
-          %td Order Number
-          %td= @order.name
-        %tr
-          %td Order Date
-          %td= @order.created_at.strftime("%Y-%m-%d %I:%M%p")
-        %tr
-          %td Order Status
-          %td= @order.unshipped_items_for_vendor ? "open" : "fulfilled"
-        %tr
-          %td Subtotal
-          %td= number_to_currency @order.total_line_items_price_vendor
-        %tr
-          %td Shipping
-          %td= number_to_currency @order.shipping_vendor
-        %tr
-          %td ORDER TOTAL
-          %td= number_to_currency @order.total_price_vendor
-    
-  %div.span-10.last
-    %fieldset
-      %legend Shipping Address
-      %table
-        %tr
-          %td Name
-          %td= @order.shipping_address.name
-        %tr
-          %td Address 1
-          %td= @order.shipping_address.address1
-        - if !@order.shipping_address.address2.nil? && !@order.shipping_address.address2.empty?
+      %fieldset{:style => "float:left; width:400px"}
+        %legend Order Header
+        %table
           %tr
-            %td Address 2
-            %td= @order.shipping_address.address2
-        %tr
-          %td City
-          %td= @order.shipping_address.city
-        %tr
-          %td State
-          %td= @order.shipping_address.province_code
-        %tr
-          %td ZIP Code
-          %td= @order.shipping_address.zip
-        %tr
-          %td Phone
-          %td= @order.shipping_address.phone
-        %tr
-          %td Tracking Number
-          %td= 42
-    
-  %div.span-20.last
-  %div.span-10.last
-    %fieldset
-      %legend Order Items
-      %table
-        %thead
+            %td Order Number
+            %td= @order.name
           %tr
-            %th Qty
-            %th SKU
-            %th Description
-            %th Size
-            %th Status
-        %tbody
-          - @order.line_items.each do |li|
+            %td Order Date
+            %td= @order.created_at.strftime("%Y-%m-%d %I:%M%p")
+          %tr
+            %td Order Status
+            %td= @order.unshipped_items_for_vendor ? "open" : "fulfilled"
+          %tr
+            %td Subtotal
+            %td= number_to_currency @order.total_line_items_price_vendor
+          %tr
+            %td Shipping
+            %td= number_to_currency @order.shipping_vendor
+          %tr
+            %td ORDER TOTAL
+            %td= number_to_currency @order.total_price_vendor
+    
+      %fieldset{:style => "float:left; width:400px"}
+        %legend Shipping Address
+        %table
+          %tr
+            %td Name
+            %td= @order.shipping_address.name
+          %tr
+            %td Address 1
+            %td= @order.shipping_address.address1
+          - if !@order.shipping_address.address2.nil? && !@order.shipping_address.address2.empty?
             %tr
-              %td= li.quantity
-              %td= li.sku
-              %td= li.title
-              %td= li.variant_title
-              %td= li.fulfillment_status
+              %td Address 2
+              %td= @order.shipping_address.address2
+          %tr
+            %td City
+            %td= @order.shipping_address.city
+          %tr
+            %td State
+            %td= @order.shipping_address.province_code
+          %tr
+            %td ZIP Code
+            %td= @order.shipping_address.zip
+          %tr
+            %td Phone
+            %td= @order.shipping_address.phone
+          %tr
+            %td Tracking Number
+            %td= 42
+    
+      %div{:style => "clear:both"}
+
+      %fieldset
+        %legend Order Items
+        %table
+          %thead
+            %tr
+              %th Qty
+              %th SKU
+              %th Description
+              %th Size
+              %th Status
+          %tbody
+            - @order.line_items.each do |li|
+              %tr
+                %td= li.quantity
+                %td= li.sku
+                %td= li.title
+                %td= li.variant_title
+                %td= li.fulfillment_status
   
-  %div.span-24{:style => "margin-top:50px"}
+  %div.span-24{:style => "margin-top:100px"}
     %hr
     %h1 Dev stuff
     %p Find me in app/views/sorders/display.html.haml

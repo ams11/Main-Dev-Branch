@@ -1,17 +1,21 @@
-%div.container.showgrid{:style => "margin:10px"}
+- content_for :head do
+  = stylesheet_link_tag "portal.css"
 
-  %h1 Login
+%div{:style => "margin:10px"}
+  .form-box
+    %div
+      %h2 Login
 
-  = form_for @user_session do |f|
-    = f.error_messages
-    %p
-      = f.label :username
-      %br/
-      = f.text_field :username
-    %p
-      = f.label :password
-      %br/
-      = f.password_field :password
-    %p= f.submit
+      = form_for @user_session do |f|
+        = f.error_messages
+        %p
+          = f.label :username, :class => "label"
+          %br/
+          = f.text_field :username, :class => "inputtext"
+        %p
+          = f.label :password, :class => "label"
+          %br/
+          = f.password_field :password, :class => "inputtext"
+        %p= f.submit "Login", :class => "inputsubmit"
 
 
