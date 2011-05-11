@@ -101,8 +101,9 @@ a.read-more:hover {
 	overflow: hidden;
 }
 #sidebar img {
+	display: block;
 	width: 152px;
-	height: 79px;
+	height: 68px;
 }
 #sidekick {
 	width:198px;
@@ -207,8 +208,8 @@ a.read-more:hover {
 .ui-state-active-1 {
 	background:#4c4c4c;
 }
-*/
 .ui-widget-content {
 	height:80px;
 }
+*/
 
