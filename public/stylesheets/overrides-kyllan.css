@@ -1,0 +1,27 @@
+
+/* overrides to fix style.css */
+
+a.category-link {
+	font-size:13px;
+}
+.post-container-featured p {
+	font-size: 13px;
+}
+.post-container-featured .post-title {
+	line-height: normal;
+}
+
+/* overrides to remove padding from accordian content area */
+
+.ui-accordion .ui-accordion-content {
+	padding: 0;
+}
+.ui-accordion-header-1 {
+	font-size: 11px;
+}
+.ui-accordion-icons .ui-accordion-header a {
+	padding-left:30px;
+}
+.accordion-no-icons {
+	display:none;
+}

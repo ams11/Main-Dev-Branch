@@ -2,10 +2,13 @@
   = stylesheet_link_tag 'white/jquery-ui-1.8.11.custom.css'
   = javascript_include_tag 'white/jquery-ui-1.8.11.custom.min.js'
   = stylesheet_link_tag "home.css"
+  = stylesheet_link_tag "overrides-kyllan.css"
+  = stylesheet_link_tag "kyllan.css"
   :javascript
     $(function() {
       $("#sidebar").accordion({
-        event: "mouseover"
+        event: "mouseover",
+        icons: { 'header': 'accordion-no-icons', 'headerSelected': 'accordion-no-icons'}
       });
       
       rotateHero();
@@ -29,7 +32,7 @@
 
 %div{:style => "position:relative"}
   #template
-    = link_to(image_tag(@siteconfig.hero_picture_big_1.url), @siteconfig.hero_link_1, :class => "attachment-polaroid-image wp-post-image", :alt => "Big Hero") if !@siteconfig.hero_picture_big_1.nil?
+    = image_tag(@siteconfig.hero_picture_big_1.url, :class => "attachment-polaroid-image wp-post-image", :alt => "Big Hero") if !@siteconfig.hero_picture_big_1.nil?
     .cornerLeft
     .cornerRight
     .clear
