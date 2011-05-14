@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/sorders/edit.html.haml</string>
+	<string>config/merchant.yml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -11,6 +11,8 @@
 			<string>Gemfile</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -19,8 +21,6 @@
 			<string>config</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>app</string>
 			<key>regexFolderFilter</key>
@@ -63,34 +63,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/pages/admin.html.haml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>27</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>app/views/pages/home.html.haml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>app/views/pages/merchant.html.haml</key>
 		<dict>
 			<key>caret</key>
@@ -121,20 +93,6 @@
 				<integer>5</integer>
 			</dict>
 		</dict>
-		<key>app/views/siteconfig/_form.html.haml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>82</integer>
-		</dict>
 		<key>app/views/siteconfig/show.html.haml</key>
 		<dict>
 			<key>caret</key>
@@ -164,20 +122,6 @@
 				<key>line</key>
 				<integer>4</integer>
 			</dict>
-		</dict>
-		<key>app/views/sorders/edit.html.haml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>17</integer>
-				<key>line</key>
-				<integer>103</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>73</integer>
 		</dict>
 		<key>app/views/sorders/index.html.haml</key>
 		<dict>
@@ -297,14 +241,42 @@
 				<integer>3</integer>
 			</dict>
 		</dict>
-		<key>public/stylesheets/home.css</key>
+		<key>config/merchant.yml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
+				<integer>229</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>202</integer>
+		</dict>
+		<key>public/stylesheets/kyllan.css</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>0</integer>
+				<key>line</key>
+				<integer>190</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>161</integer>
+		</dict>
+		<key>public/stylesheets/overrides-kyllan.css</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>22</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -328,17 +300,11 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>app/views/sorders/index.html.haml</string>
-		<string>app/views/sorders/show.html.haml</string>
-		<string>app/views/sorders/edit.html.haml</string>
-		<string>app/controllers/sorders_controller.rb</string>
-		<string>public/stylesheets/portal.css</string>
-		<string>app/views/sorders/open.html.haml</string>
-		<string>public/stylesheets/home.css</string>
+		<string>config/merchant.yml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{610, 259}, {923, 693}}</string>
+	<string>{{470, 99}, {715, 655}}</string>
 </dict>
 </plist>

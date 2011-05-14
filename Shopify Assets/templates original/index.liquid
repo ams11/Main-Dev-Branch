@@ -1,0 +1,51 @@
+<!-- START SHOWCASE -->
+
+<div>
+  <h1>Collection links go here</h1>
+
+  Product Types:  {{ "Tops" | link_to_type }} | {{ "Bottoms" | link_to_type }} <br/>
+  Categories in Tops:
+    {% for c in collections %}
+      {% if c.title contains "Tops" and c.title != "Tops" %}
+        {{ c.title | remove: 'Tops-' | link_to: c.url }}
+      {% endif %}
+    {% endfor %} <br/>
+  Tops By Gender:
+    {% for tag in collections['Tops'].tags %}
+      {% if tag contains 'gender:' %}
+        {% capture tag_url%}{{ collections.tops.url }}/{{ tag }}{% endcapture %}
+        {{ tag | remove: 'gender:' | link_to: tag_url }}
+      {% endif %}
+    {% endfor %} <br/>
+  Tops By Color:
+    {% for tag in collections['Tops'].tags %}
+      {% if tag contains 'color:' %}
+        {% capture tag_url%}{{ collections.tops.url }}/{{ tag }}{% endcapture %}
+        {{ tag | remove: 'color:' | link_to: tag_url }}
+      {% endif %}
+    {% endfor %} <br/>
+  Tops By Size:
+    {% for tag in collections['Tops'].tags %}
+      {% if tag contains 'size:' %}
+        {% capture tag_url%}{{ collections.tops.url }}/{{ tag }}{% endcapture %}
+        {{ tag | remove: 'size:' | link_to: tag_url }}
+      {% endif %}
+    {% endfor %} <br/>
+
+</div>
+
+<div id="showcase">{% if collections.frontpage.products.size > 0 %}{% for product in collections.frontpage.products limit: 1 %}
+	<h1>{{ product.title | escape }}</h1>
+	<div id="image" class="clear">
+		<a href="{{ product.url | within: collections.all }}"><img src="{{ product.images[0] | product_img_url: "grande" }}" alt="{{ product.title | escape }}" /></a>
+	</div>{% if settings.showcase.size > 0 %}
+	<h3>{{ settings.showcase | escape }}</h3>{% endif %}
+	<div id="buy" class="clear">
+		<div id="button">
+			<p><a href="{{ product.url | within: collections.all }}">BUY THIS</a></p>
+		</div>
+		<h2>{{ product.price | money }}</h2>
+	</div>{% endfor %}{% else %}
+	<p><a href="/admin/custom_collections">Add a product to the "frontpage" collection to see it here...</a></p>{% endif %}
+</div>
+<!-- END SHOWCASE -->{% include "related" %}

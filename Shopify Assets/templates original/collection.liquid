@@ -1,0 +1,103 @@
+
+
+{% layout "empty" %}
+
+{% paginate collection.products by 9 %}
+
+<!-- START EXCERPT -->
+<div id="excerpt">
+	<h1 class="title">{{ collection.title | escape }}</h1>
+	<!--
+	{% if collection.description.size > 0 %}
+		{{ collection.description }}
+	{% endif %}
+	-->
+</div>
+<!-- END EXCERPT -->
+
+<div style="float:left; width:200px">
+	<h1>Product Type</h1>
+	<ul class="soleDropdownMain">
+	{% for type in shop.types %}
+		<li>
+		<a href="{{ collections[type].url }}">{{ collections[type].title }}</a>
+		
+		<ul class="soleDropdownSub" style="margin-left:10px">
+		{% for c in collections %}
+			<li>
+				{% capture type_with_dash %}{{ type | append: '-' }}{% endcapture %}
+				{% if c.title contains type_with_dash %}
+				<a href="{{ c.url }}">{{ c.title | remove_first: type_with_dash }}</a>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+		
+		</li>
+	{% endfor %}
+	</ul>
+
+	<h1>Tags</h1>
+	<ul class="soleDropdownMain">
+	{% capture lastTag %}{% endcapture %}
+	{% assign lastTagCount = 0 %}
+	{% for tag in collection.tags %}
+		{% capture tagType %}{{ tag | replace: ':', ' ' | truncatewords: 1 | remove: '...' }}{% endcapture %}
+		{% capture tagValue %}{{ tag | replace: tagType, '' | replace: ':', '' }}{% endcapture %}
+		{% unless tagValue == "true" or tagValue == "false" %}
+			{% if tagType != lastTag %}
+				{% unless lastTag == empty %} </ul></li> {% endunless %}
+				<li>{{ tagType | capitalize }}<ul  class="soleDropdownSub" style="margin-left:10px">
+			{% endif %}
+			<li>{{ tagValue | link_to_tag: tag }}</li>
+			{% capture lastTag %}{{ tagType }}{% endcapture %}
+		{% endunless %}
+	{% endfor %}
+	</ul></li>
+	{% for tag in collection.tags %}
+		{% capture tagType %}{{ tag | replace: ':', ' ' | truncatewords: 1 | remove: '...' }}{% endcapture %}
+		{% capture tagValue %}{{ tag | replace: tagType, '' | replace: ':', '' }}{% endcapture %}
+		{% if tagValue == "true" %}
+			<li>{{ tagType | capitalize | link_to_tag: tag }}</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+</div>
+
+<div style="float:left; width:605px">
+
+<!-- START PRODUCTS -->
+{% if collection.products.size > 0 %}
+	<ul id="products" class="clear">
+	{% for product in collection.products %}
+		<!-- START PRODUCT {{ forloop.index }} -->
+		<li{% cycle '', '', ' class="end"' %}>
+			<!-- START IMAGE -->
+			<div class="image">
+				<div class="align">
+					<div><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" /></a></div>
+				</div>
+			</div>
+			<!-- END IMAGE -->
+			<h3><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 25 }}</a></h3>
+			<p>{{ product.price | money }}{% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}</p>
+		</li>
+		<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
+	</ul>
+{% else %}
+	<p id="empty">There are no products in this collection.</p>
+{% endif %}
+<!-- END PRODUCTS -->
+
+</div>
+
+<div style="clear:both"/>
+
+{% if paginate.pages > 1 %}
+	<!-- START PAGINATE -->
+	<div id="paginate">
+		{{ paginate | default_pagination }}
+	</div>
+	<!-- END PAGINATE -->
+{% endif %}
+{% endpaginate %}

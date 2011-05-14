@@ -1,0 +1,195 @@
+{% layout "embedded" %}
+
+<!--
+<div>
+  collection.all_products_count: {{ collection.all_products_count }} <br/>
+  collection.tags: {{ collection.tags }} <br/>
+  test tag:  {{ 'On Sale' | collection | link_to_tag: 'onsale:true' }}
+</div>
+-->
+
+<div id="c1">
+
+<div id="sidenav-container">
+  <h4 class="widget-title">category name</h4>
+
+  {% if collection.all_products_count > 0 %}
+  
+    {% if collection.title == 'Products' %}
+      <ul class="sidenav">
+      	{% for type in shop.types %}
+      		<li>
+      		  <a href="{{ collections[type].url }}">{{ collections[type].title }}</a>
+  			  <li>
+  			{% endfor %}
+      </ul>
+    {% else %}
+      {% assign currtype = collection.all_products.first.type %}
+      <ul class="sidenav">
+    		{% for c in collections %}
+    			<li>
+    				{% capture type_with_dash %}{{ currtype | append: '-' }}{% endcapture %}
+    				{% if c.title contains type_with_dash %}
+    				<a href="{{ c.url }}">{{ c.title | remove_first: type_with_dash }}</a>
+    				{% endif %}
+    			</li>
+    		{% endfor %}
+      </ul>
+    {% endif %}
+  
+    <div class="hr"></div>
+    <h5>Narrow Your Results...</h5>
+    <div><img src="images/price-holder.gif" width="190" height="42" /></div>
+    <ul class="filter">
+      <li><a href="#">Brand</a></li>
+      <li><a href="#">Color</a></li>
+      <li><a href="#">Size</a></li>
+    </ul>
+
+  {% endif %}
+</div>
+
+<div id="main-container">
+  <div class="breadcrumb">
+
+    {% if collection.title contains '-' %}
+      {% capture typeCategory %}{{ collection.title | replace_first: '-', ' ' }}{% endcapture %}
+      {% capture currType %}{{ typeCategory | truncatewords: 1 | remove: '...' }}{% endcapture %}
+      {% capture currCategory %}{{ typeCategory | replace_first: currType, '' }}{% endcapture %}
+		  <a href="{{ collections[currType].url }}">{{ collections[currType].title }}</a>
+		  » <a href="{{ collections[collection.title].url }}">{{ currCategory }}</a>
+    {% else %}
+		  <a href="{{ collections[collection.title].url }}">{{ collections[collection.title].title }}</a>
+    {% endif %}
+  </div>
+
+  <div class="hr"></div>
+  <form id="form1" name="form1" method="post" action="">
+    <div class="product-filters"><strong>Show only:</strong>
+      <input type="radio" name="radio" id="radio" value="radio" />
+      <label for="radio">{{ 'On Sale' | collection | link_to_tag: 'onsale:true' }}</label>
+      <input type="radio" name="radio" id="radio3" value="radio3" disabled="disabled" />
+      <label for="radio3">Featured</label>
+      <input type="radio" name="radio" id="radio4" value="radio4" />
+      <label for="radio4">{{ 'Custom Products' | collection | link_to_tag: 'custom:true' }}</label>
+    </div>
+  </form>
+
+  {% paginate collection.products by 6 %}
+
+  <div id="product-wrapper">
+
+    <!-- START PRODUCTS -->
+    {% if collection.products.size > 0 %}
+    	<ul id="products">
+    	  {% for product in collection.products %}
+    		<li{% cycle ' class="notend"', ' class="notend"', ' class="notend"', ' class="end"' %}>
+
+    			<div class="product-image">
+    				  <a href="{{ product.url | within: collection }}">
+    				    <img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" />
+    				  </a>
+    			</div>
+    			
+    			<div class="product-desc">
+  				  <a href="{{ product.url | within: collection }}">
+  				    {{ product.title | escape | truncate: 25 }}
+  				    - {{ product.price | money }}
+  				  </a>
+    			</div>
+          <div class="btn-wrap">
+            <div><a href="javascript:alert('what does ADD do?')">{{ 'btn-add.gif' | asset_url | img_tag }}</a></div>
+            <div><a href="javascript:alert('need addthis link here')">{{ 'btn-share.gif' | asset_url | img_tag }}</a></div>
+          </div>
+          <div class="clear"/>
+    		</li>
+    	  {% endfor %}
+    	  <li class="clear" style="float:none"/>
+    	</ul>
+ 
+    {% else %}
+    	<p id="empty">There are no products in this collection.</p>
+    {% endif %}
+    <!-- END PRODUCTS -->
+
+  </div>
+  <div class="hr"></div>
+
+  {% if paginate.pages > 1 %}
+  	<!-- START PAGINATE -->
+  	<div id="paginate">
+  		{{ paginate | default_pagination }}
+  	</div>
+  	<!-- END PAGINATE -->
+  {% endif %}
+
+  {% endpaginate %}
+
+</div>
+
+</div>
+
+
+
+
+<!-- Remove main title
+<div id="excerpt">
+	<h1 class="title">{{ collection.title | escape }}</h1>
+	{% if collection.description.size > 0 %}
+		{{ collection.description }}
+	{% endif %}
+</div>
+-->
+
+<!-- Remove the product taxonomy 
+<div style="float:left; width:200px">
+	<h1>Product Type</h1>
+	<ul class="soleDropdownMain">
+	{% for type in shop.types %}
+		<li>
+		<a href="{{ collections[type].url }}">{{ collections[type].title }}</a>
+		
+		<ul class="soleDropdownSub" style="margin-left:10px">
+		{% for c in collections %}
+			<li>
+				{% capture type_with_dash %}{{ type | append: '-' }}{% endcapture %}
+				{% if c.title contains type_with_dash %}
+				<a href="{{ c.url }}">{{ c.title | remove_first: type_with_dash }}</a>
+				{% endif %}
+			</li>
+		{% endfor %}
+		</ul>
+		
+		</li>
+	{% endfor %}
+	</ul>
+
+	<h1>Tags</h1>
+	<ul class="soleDropdownMain">
+	{% capture lastTag %}{% endcapture %}
+	{% assign lastTagCount = 0 %}
+	{% for tag in collection.tags %}
+		{% capture tagType %}{{ tag | replace: ':', ' ' | truncatewords: 1 | remove: '...' }}{% endcapture %}
+		{% capture tagValue %}{{ tag | replace: tagType, '' | replace: ':', '' }}{% endcapture %}
+		{% unless tagValue == "true" or tagValue == "false" %}
+			{% if tagType != lastTag %}
+				{% unless lastTag == empty %} </ul></li> {% endunless %}
+				<li>{{ tagType | capitalize }}<ul  class="soleDropdownSub" style="margin-left:10px">
+			{% endif %}
+			<li>{{ tagValue | link_to_tag: tag }}</li>
+			{% capture lastTag %}{{ tagType }}{% endcapture %}
+		{% endunless %}
+	{% endfor %}
+	</ul></li>
+	{% for tag in collection.tags %}
+		{% capture tagType %}{{ tag | replace: ':', ' ' | truncatewords: 1 | remove: '...' }}{% endcapture %}
+		{% capture tagValue %}{{ tag | replace: tagType, '' | replace: ':', '' }}{% endcapture %}
+		{% if tagValue == "true" %}
+			<li>{{ tagType | capitalize | link_to_tag: tag }}</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
+</div>
+-->
+
+

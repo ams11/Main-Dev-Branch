@@ -1,0 +1,215 @@
+
+/* all pages */
+
+#template-container {
+	margin: 0px;
+	padding:26px;
+	width: 980px;
+	position:relative;
+}
+.hr {
+	background:url(hr.gif) repeat-x;
+	height:1px;
+	overflow:visible;
+	display:block;
+}
+.clear {
+	clear: both;
+}
+#paginate {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#paginate .page {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#paginate .current {
+}
+#paginate .prev {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#paginate .next {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#c1 #paginate a {
+	color:#5fbb30;
+	text-transform:uppercase;
+}
+#c1 #paginate a:hover {
+	color:#606060;
+}
+
+/* collection page */
+
+#c1 {
+	margin: 0px;
+	padding: 0px;
+	font-family: Tahoma, Sans-Serif;
+	font-size:13px;
+}
+#c1 li, #c1 ul {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+#c1 h5 {
+	font-size:13px;
+	font-weight:bold;
+	margin:10px 0 15px
+}
+#c1 a, #c1 a:active, #c1 a:visited {
+	color:#606060;
+	text-decoration:none;
+	border:none 0px;
+	font-weight:bold;
+}
+#c1 a:hover {
+	color:#5fbb30;
+}
+#c1 #sidenav-container {
+	float:left;
+	width:190px;
+}
+#c1 #sidenav-container ul {
+	margin-bottom:20px;
+}
+#c1 #sidenav-container ul.sidenav {
+	line-height:26px;
+	margin:0px;
+	padding-left:25px;
+	color:#000;
+	font-weight:bold;
+}
+#c1 ul.sidenav a {
+	color:#5fbb30;
+	display:block;
+}
+#c1 ul.sidenav a:hover {
+	color:#606060;
+}
+#c1 ul.filter {
+	margin-top:20px;
+	padding:0px;
+	color:#000;
+	font-weight:bold;
+}
+#c1 ul.filter a {
+	color:#fff;
+	background:url(../images/subnav-arrow.gif) 176px 8px no-repeat #4c4c4c;
+	padding:6px 0px 6px 10px;
+	margin-top:1px;
+	display:block;
+}
+#c1 ul.filter a:hover {
+	background:#000;
+}
+#c1 .widget-title {
+	background: none repeat scroll 0 0 #E5E5E5;
+	color: #000000;
+	font-family: Tahoma, Verdana, 'Lucida Sans Unicode';
+	font-size: 10px;
+	font-weight: bold;
+	margin: 0 0 5px;
+	padding: 2px 0 2px 13px;
+	text-transform: uppercase;
+	width: 177px;
+}
+#c1 #main-container {
+	float:left;
+	margin-left:20px;
+	width:718px;
+}
+#c1 .breadcrumb {
+	margin-bottom:6px;
+}
+#c1 #product-wrapper {
+	margin:30px 0px 0px;
+	width:718px;
+}
+#c1 .product-filters {
+	margin-top:10px;
+}
+#c1 .product-filters label {
+	margin-right:20px;
+}
+#c1 .product-image {
+	border:#e5e5e5 solid 1px;
+	width:160px;
+}
+#c1 .product-desc {
+	margin-top:7px;
+	font-family:Tahoma, Verdana, 'Lucida Sans Unicode';
+	font-size:11px;
+	line-height:10pt;
+}
+#c1 .product-bold {
+	font-weight:bold;
+}
+#c1 .btn-wrap div {
+	float:left;
+	margin:6px 10px 25px 0px;
+}
+
+/* from default shopify screen.css */
+
+ul#products {
+	padding: 15px 0;
+}
+
+#c1 ul#products li {
+	width: 160px;
+	float: left;
+}
+
+ul#products li.notend {
+	margin-right: 23px;
+}
+
+ul#products li.end {
+	border-right: none;
+}
+
+ul#products li div.image {
+	padding: 10px 14px;
+}
+
+ul#products li div.image div.align {
+	width: 240px;
+	height: 240px;
+	position: relative;
+}
+
+ul#products li div.image div.align div {
+	font-size: 217px;
+	text-align: center;
+	vertical-align: middle;
+	width: 240px;
+	height: 240px;
+	overflow: hidden;
+	display: table-cell;
+}
+
+ul#products li div.image div.align div img {
+	vertical-align: middle;
+}
+
+ul#products li h3 {
+	font-size: 13px;
+	text-align: center;
+}
+
+ul#products li p {
+	font-size: 12px;
+	text-align: center;
+	padding: 3px 0 15px;
+}
+
+ul#products li p del {
+	color: #999;
+	padding-left: 3px;
+}
+
+ß

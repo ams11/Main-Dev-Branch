@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+    <title>{{ shop.name | escape }} &mdash; {% if template == "404" %}Page Not Found{% else %}{{ page_title | escape }}{% endif %}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="{{ shop.name | escape }}" />
+	{{ content_for_header }}
+	{{ "soletron.css" | asset_url | stylesheet_tag }}
+	{{ 'jquery.min.js' | shopify_asset_url | script_tag }}
+	</script>
+
+</head>
+
+<body>
+	<!-- START CONTAINER -->
+	<div id="template-container">
+
+		<!-- START CONTENT -->
+		<!-- Remove shadow
+		<div id="shadow">&nbsp;</div>
+		-->
+
+		<div id="{% if template == "404" %}missing{% else %}{{ template }}{% endif %}" class="content">
+
+			<!-- START BG -->
+			<div id="bg" class="clear">
+			  {% if template == "page" or template == "blog" or template == "article" %}
+
+				<h1 class="title">{{ page.title | escape }}{{ blog.title | escape }}</h1>
+
+				<!-- START MAIN -->
+				<div id="main">
+					{{ content_for_layout }}
+				</div>
+				<!-- END MAIN -->
+
+				<!-- START SIDEBAR -->
+				<div id="sidebar">
+					<h3>Recent Articles</h3>{% capture blog_handle %}{% if template == "page" %}news{% else %}{{ blog.handle }}{% endif %}{% endcapture %}{% if blogs.[blog_handle].articles.size > 0 %}{% for article in blogs.[blog_handle].articles limit: 4 %}
+					<!-- START POST {{ forloop.index }} -->
+					<div class="post{% if forloop.last %} end{% endif %}">
+						<h5><a href="{{ article.url }}">{{ article.title | escape }}</a></h5>
+						<p>{{ article.content | strip_html | strip_newlines | truncate: 80 }}</p>
+					</div>
+					<!-- END POST {{ forloop.index }} -->{% endfor %}{% else %}
+					<p>No articles.</p>{% endif %}
+					<p id="feed"><a href="{{ shop.url }}/blogs/{{ blog_handle }}.atom">{{ blog.title | escape }} Feed Subscription</a></p>
+				</div>
+				<!-- END SIDEBAR -->
+
+        {% else %}
+
+          <!-- Move breadcrumb trail into collections template
+          {% if template contains "collection" %}
+            <h2>Template contains collection</h2>
+            {% if current_tags.size > 0 %}
+              <span class="separator">&raquo;</span>
+              {{ collection.title | link_to: collection.url }}
+              <span class="separator">&raquo;</span>
+              <span class="page-title">{{ current_tags.first }}</span>
+            {% else %}
+              <span class="separator">&raquo;</span>
+              <span class="page-title">{{ page_title }}</span>
+            {% endif %}
+          {% endif %}
+          -->
+
+				  {{ content_for_layout }}
+        {% endif %}
+
+			</div>
+			<!-- END BG -->
+
+		</div>
+		<div id="roundup">&nbsp;</div>
+		<!-- END CONTENT -->
+	</div>
+	<!-- END CONTAINER -->{% if template == "product" %}{% if product.available %}{% if product.variants.size > 1 %}
+	<script type="text/javascript">
+		// <![CDATA[
+		var selectCallback = function(variant, selector) {
+			if (variant && variant.available == true) {
+				$("input#add").removeClass("disabled").removeAttr("disabled");
+				$("h2#price span").html(Shopify.formatMoney(variant.price, "{{ shop.money_format }}"));
+				if ($("h2#price del").length > 0) {
+					$("h2#price del").html(Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}"));
+				};
+			} else {
+				$("input#add").addClass("disabled").attr("disabled", "disabled");
+				var message = variant ? "Sold Out" : "Unavailable";
+				$("h2#price span").text(message);
+				if ($("h2#price del").length > 0) { $("h2#price del").text(""); };
+			}
+		};
+		$(function() {
+			new Shopify.OptionSelectors("id", { product: {{ product | json }}, onVariantSelected: selectCallback });
+		});
+		// ]]>
+	</script>{% endif %}{% endif %}{% endif %}
+</body>
+</html>
