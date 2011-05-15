@@ -212,4 +212,102 @@ ul#products li p del {
 	padding-left: 3px;
 }
 
-ß
+#c1 .filters {
+	position:relative;
+	line-height:20px
+}
+#c1 .filters h4 {
+	margin:0px;
+	padding:0px
+}
+#c1 .filters a { color:#5fbb30; }
+#c1 .filters a:hover { color:#FFF }
+#c1 .filters li a { display:block; }
+#c1 .filterButton {
+	background-color: #7f7f7f;
+	border: #7f7f7f solid 1px;
+	color: #fff;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:11px;
+	text-transform:uppercase;
+	font-weight:bold;
+	padding: 2px 5px 3px;
+	text-align: center;
+}
+#c1 .flyout-brand {
+	background:#000;
+	width:200px;
+	color:#fff;
+	padding:20px;
+	border-radius: 4px 4px 4px 4px;
+	/* 
+	position:absolute;
+	left:190px;
+	z-index:10000;
+	*/
+}
+#c1 .flyout-color {
+	background:#000;
+	width:400px;
+	color:#fff;
+	padding:20px 20px 10px 20px;
+	/*
+	position:absolute;
+	left:190px;
+	border-radius: 4px 4px 4px 4px;
+	z-index:10000;
+	*/
+}
+#c1 .colors {
+	color:#000;
+}
+#c1 .colors li {
+	float:left;
+	width:62px;
+	height:35px;
+	font-size:10px;
+	margin-left:10px;
+	padding-top:25px;
+}
+#c1 .colors .green {
+	background: url(colors.gif) no-repeat;
+}
+#c1 .colors .blue {
+	background: url(colors.gif) no-repeat 0px -60px;
+}
+#c1 .colors .purple {
+	background: url(colors.gif) no-repeat 0px -120px;
+}
+#c1 .colors .red {
+	background: url(colors.gif) no-repeat 0px -180px;
+}
+#c1 .colors .pink {
+	background: url(colors.gif) no-repeat 0px -240px;
+}
+#c1 .colors .beige {
+	background: url(colors.gif) no-repeat 0px -300px;
+}
+#c1 .colors .brown {
+	background: url(colors.gif) no-repeat 0px -360px;
+}
+#c1 .colors .yellow {
+	background: url(colors.gif) no-repeat 0px -420px;
+}
+#c1 .colors .orange {
+	background: url(colors.gif) no-repeat 0px -480px;
+}
+#c1 .colors .black {
+	background: url(colors.gif) no-repeat 0px -540px;
+}
+#c1 .colors .white {
+	background: url(colors.gif) no-repeat 0px -600px;
+}
+#c1 .colors .gray {
+	background: url(colors.gif) no-repeat 0px -660px;
+}
+#c1 .colors .gold {
+	background: url(colors.gif) no-repeat 0px -720px;
+}
+#c1 .colors .silver {
+	background: url(colors.gif) no-repeat 0px -780px;
+}

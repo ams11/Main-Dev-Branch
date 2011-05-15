@@ -1,12 +1,107 @@
+{% paginate collection.products by 16 %}
+
 {% layout "embedded" %}
 
-<!--
+<script>
+  $(function() {
+    //alert('load');
+    
+    $('#sizeFilter').hide();
+    $('#sizeFilterLink').click(function(e) {
+      e.preventDefault();
+      $('#brandFilter').hide();
+      $('#colorFilter').hide();
+      var pos = $('#sizeFilterLink').parent().position();
+      var widthOffset = $('#sizeFilterLink').parent().width();
+      pos.left += widthOffset + 10;
+      $('#sizeFilter').show().offset(pos);
+    });
+    $('#sizeFilter').mouseleave(function(e) {
+      $(this).hide();
+    });
+
+    $('#brandFilter').hide();
+    $('#brandFilterLink').click(function(e) {
+      e.preventDefault();
+      $('#sizeFilter').hide();
+      $('#colorFilter').hide();
+      var pos = $('#brandFilterLink').parent().position();
+      var widthOffset = $('#brandFilterLink').parent().width();
+      pos.left += widthOffset + 10;
+      $('#brandFilter').show().offset(pos);
+    });
+    $('#brandFilter').mouseleave(function(e) {
+      $(this).hide();
+    });
+    
+    $('#colorFilter').hide();
+    $('#colorFilterLink').click(function(e) {
+      e.preventDefault();
+      $('#sizeFilter').hide();
+      $('#brandFilter').hide();
+      $('#colorFilter input[type=checkbox]').attr('checked', false);
+      var pos = $('#colorFilterLink').parent().position();
+      var widthOffset = $('#colorFilterLink').parent().width();
+      pos.left += widthOffset + 10;
+      $('#colorFilter').show().offset(pos);
+    });
+    $('#colorFilter').mouseleave(function(e) {
+      $(this).hide();
+    });
+    $('#clearColorFilter').click(function(e) {
+      $('#colorFilter input[type=checkbox]').attr('checked', false);
+    });
+    $('#colorFilter input[type=checkbox]').click(function(e) {
+      window.location = $("~ span > a", this).attr('href');
+    });
+    
+    $('input[name=radioFilter]').change(function() {
+      if ($('input[name=radioFilter]:checked').val()) {
+        var selection = $('input[name=radioFilter]:checked').val();
+        if (selection == 'onsale') {
+          $.cookie('collectionRadioFilter', selection);
+          window.location = $("#hidden a:contains('onsale')").attr("href");
+        }
+        else if (selection == 'custom') {
+          $.cookie('collectionRadioFilter', selection);
+          window.location = $("#hidden a:contains('custom')").attr("href");
+        }
+        else if (selection == 'featured') {
+          alert('goto featured');
+        }
+        else {
+          alert('unknown filter: ' + selection);
+        }
+      }
+    });
+    
+    /* keep state of radio filters */
+    var collectionRadioFilter = $.cookie('collectionRadioFilter');
+    if (collectionRadioFilter) {
+      $("input[name=radioFilter][value=" + collectionRadioFilter + "]").attr('checked', 'checked');
+    }
+    $.cookie('collectionRadioFilter', null);
+    
+  });
+</script>
+
+
 <div>
+  <!--
+  collection.products.size: {{ collection.products.size }} <br/>
   collection.all_products_count: {{ collection.all_products_count }} <br/>
   collection.tags: {{ collection.tags }} <br/>
   test tag:  {{ 'On Sale' | collection | link_to_tag: 'onsale:true' }}
+  -->
 </div>
--->
+
+
+<div id="hidden" style="display:none">
+  {{ 'onsale' | collection | link_to_tag: 'onsale:true' }}
+  {{ 'custom' | collection | link_to_tag: 'custom:true' }}
+  {{ 'collection' | link_to: collection.url }}
+  <span id="collection.handle">{{ collection.handle }}</span>
+</div>
 
 <div id="c1">
 
@@ -15,6 +110,8 @@
 
   {% if collection.all_products_count > 0 %}
   
+    {% assign currtype = collection.all_products.first.type %}
+
     {% if collection.title == 'Products' %}
       <ul class="sidenav">
       	{% for type in shop.types %}
@@ -39,17 +136,144 @@
   
     <div class="hr"></div>
     <h5>Narrow Your Results...</h5>
+    
+    <!--
     <div><img src="images/price-holder.gif" width="190" height="42" /></div>
+    -->
+    
     <ul class="filter">
-      <li><a href="#">Brand</a></li>
-      <li><a href="#">Color</a></li>
-      <li><a href="#">Size</a></li>
+      <li><a id="brandFilterLink" href="#">Brand</a></li>
+      <li><a id="colorFilterLink" href="#">Color</a></li>
+      <li><a id="sizeFilterLink" href="#">Size</a></li>
     </ul>
+    
+    <div id="brandFilter" class="filters" style="display:none">
+      <div class="flyout-brand">
+        <ul>
+        {% for tag in collections[currtype].all_tags %}
+          {% if tag contains 'brand:' %}
+            <li>{{ tag | replace_first: 'brand:','' | capitalize | link_to_tag: tag }}</li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div id="sizeFilter" class="filters" style="display:none">
+      <div class="flyout-brand">
+        <ul>
+        {% for tag in collections[currtype].all_tags %}
+          {% if tag contains 'size:' %}
+            <li>{{ tag | replace_first: 'size:','' | capitalize | link_to_tag: tag }}</li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div id="colorFilter" class="filters" style="display:none">
+      <div class="flyout-color">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr height="30">
+            <td valign="top"><h4>Choose one or more</h4></td>
+            <td valign="top">
+              <form id="form3" name="form3" method="post" action="">
+                <input type="checkbox" name="checkbox" id="checkbox" />
+                <label for="checkbox">Find multi-color items</label>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" bgcolor="#FFFFFF">
+              <form id="form4" name="form4" method="post" action="">
+                <ul class="colors">
+                <li class="green">
+                    <input type="checkbox" name="color:Greens" id="color:Greens" />
+                    <label for="checkbox2">Green</label>
+                    <span style="display:none">{{ 'color:Greens' | collection | link_to_tag: 'color:Greens' }}</span>
+                </li>
+                <li class="blue">
+                  <input type="checkbox" name="color:Blues" id="color:Blues" />
+                  <label for="checkbox3">Blues</label>
+                  <span style="display:none">{{ 'color:Blues' | collection | link_to_tag: 'color:Blues' }}</span>
+                </li>
+                <li class="purple">
+                  <input type="checkbox" name="color:Purples" id="color:Purples" />
+                  <label for="checkbox4">Purples</label>
+                  <span style="display:none">{{ 'color:Purples' | collection | link_to_tag: 'color:Purples' }}</span>
+                </li>
+                <li class="red">
+                  <input type="checkbox" name="color:Reds" id="color:Reds" />
+                  <label for="checkbox5">Reds</label>
+                  <span style="display:none">{{ 'color:Reds' | collection | link_to_tag: 'color:Reds' }}</span>
+                </li>
+                <li class="pink">
+                  <input type="checkbox" name="color:Pinks" id="color:Pinks" />
+                  <label for="checkbox6">Pinks</label>
+                  <span style="display:none">{{ 'color:Pinks' | collection | link_to_tag: 'color:Pinks' }}</span>
+                </li>
+                <li class="beige">
+                  <input type="checkbox" name="color:Beiges" id="color:Beiges" />
+                  <label for="checkbox7">Beiges</label>
+                  <span style="display:none">{{ 'color:Beiges' | collection | link_to_tag: 'color:Beiges' }}</span>
+                </li>
+                <li class="brown">
+                  <input type="checkbox" name="color:Browns" id="color:Browns" />
+                  <label for="checkbox8">Browns</label>
+                  <span style="display:none">{{ 'color:Browns' | collection | link_to_tag: 'color:Browns' }}</span>
+                </li>
+                <li class="yellow">
+                  <input type="checkbox" name="color:Yellows" id="color:Yellows" />
+                  <label for="checkbox9">Yellows</label>
+                  <span style="display:none">{{ 'color:Yellows' | collection | link_to_tag: 'color:Yellows' }}</span>
+                </li>
+                <li class="orange">
+                  <input type="checkbox" name="color:Oranges" id="color:Oranges" />
+                  <label for="checkbox10">Oranges</label>
+                  <span style="display:none">{{ 'color:Oranges' | collection | link_to_tag: 'color:Oranges' }}</span>
+                </li>
+                <li class="black">
+                  <input type="checkbox" name="color:Blacks" id="color:Blacks" />
+                  <label for="checkbox11">Blacks</label>
+                  <span style="display:none">{{ 'color:Blacks' | collection | link_to_tag: 'color:Blacks' }}</span>
+                </li>
+                <li class="white">
+                  <input type="checkbox" name="color:Whites" id="color:Whites" />
+                  <label for="checkbox12">Whites</label>
+                  <span style="display:none">{{ 'color:Whites' | collection | link_to_tag: 'color:Whites' }}</span>
+                </li>
+                <li class="gray">
+                  <input type="checkbox" name="color:Grays" id="color:Grays" />
+                  <label for="checkbox13">Grays</label>
+                  <span style="display:none">{{ 'color:Grays' | collection | link_to_tag: 'color:Grays' }}</span>
+                </li>
+                <li class="gold">
+                  <input type="checkbox" name="color:Gold" id="color:Gold" />
+                  <label for="checkbox14">Golds</label>
+                  <span style="display:none">{{ 'color:Gold' | collection | link_to_tag: 'color:Gold' }}</span>
+                </li>
+                <li class="silver">
+                  <input type="checkbox" name="color:Silver" id="color:Silver" />
+                  <label for="checkbox15">Silvers</label>
+                  <span style="display:none">{{ 'color:Silver' | collection | link_to_tag: 'color:Silver' }}</span>
+                </li>
+                </ul>
+              </form>
+            </td>
+          </tr>
+          <tr height="35">
+            <td><a id="clearColorFilter" href="#"><span class="filterButton">Clear selection</span></a></td>
+            <td align="right" valign="bottom">{{ 'btn-filter.png' | asset_url | img_tag }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
   {% endif %}
 </div>
 
 <div id="main-container">
+
   <div class="breadcrumb">
 
     {% if collection.title contains '-' %}
@@ -66,16 +290,14 @@
   <div class="hr"></div>
   <form id="form1" name="form1" method="post" action="">
     <div class="product-filters"><strong>Show only:</strong>
-      <input type="radio" name="radio" id="radio" value="radio" />
-      <label for="radio">{{ 'On Sale' | collection | link_to_tag: 'onsale:true' }}</label>
-      <input type="radio" name="radio" id="radio3" value="radio3" disabled="disabled" />
+      <input type="radio" name="radioFilter" id="radio" value="onsale" />
+      <label for="radio">On Sale</label>
+      <input type="radio" name="radioFilter" id="radio3" value="featured" disabled="disabled" />
       <label for="radio3">Featured</label>
-      <input type="radio" name="radio" id="radio4" value="radio4" />
-      <label for="radio4">{{ 'Custom Products' | collection | link_to_tag: 'custom:true' }}</label>
+      <input type="radio" name="radioFilter" id="radio4" value="custom" />
+      <label for="radio4">Custom Products</label>
     </div>
   </form>
-
-  {% paginate collection.products by 6 %}
 
   <div id="product-wrapper">
 
@@ -123,11 +345,11 @@
   	<!-- END PAGINATE -->
   {% endif %}
 
-  {% endpaginate %}
-
 </div>
 
 </div>
+
+{% endpaginate %}
 
 
 

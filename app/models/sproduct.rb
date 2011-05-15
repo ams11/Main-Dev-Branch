@@ -42,8 +42,6 @@ class Sproduct < ActiveRecord::Base
       Rails.logger.debug "is_new_shopify_product = #{is_new_shopify_product}"
       
       shopify_attributes = @attributes.dup
-      add_tags_to_attributes!(shopify_attributes)
-      replace_id_with_shopify_product_id!(shopify_attributes)
       
       shopify_attributes["options"] = [{"name" => "Size"}]
       shopify_attributes["variants"] = @sproduct_variants.collect do |variant|
@@ -51,6 +49,9 @@ class Sproduct < ActiveRecord::Base
       end
       shopify_attributes["images"] = [{"src" => self.picture.url}] if self.picture.exists?
       
+      add_tags_to_attributes!(shopify_attributes)
+      replace_id_with_shopify_product_id!(shopify_attributes)
+
       if is_new_shopify_product
         if p = ShopifyAPI::Product.create(shopify_attributes)
           self.shopify_product_id = p.id
@@ -69,7 +70,7 @@ class Sproduct < ActiveRecord::Base
         Rails.logger.debug "shopify_attributes(before) = #{shopify_attributes}"
         p = ShopifyAPI::Product.find(self.shopify_product_id, :params => {  })
         if p
-          # Must delete existing product variants before readding the edited ones.
+          # Must delete existing product variants before reading the edited ones.
           x = p.variants.clear
           x = p.save
           x = p.update_attributes(shopify_attributes)
@@ -102,6 +103,9 @@ class Sproduct < ActiveRecord::Base
   
   def add_tags_to_attributes!(a)
     a['tags'] = "color:#{a['color']}, gender:#{a['gender']}, brand:#{a['brand']}, onsale:#{a['onsale']}, collectible:#{a['collectible']}, custom:#{a['custom']}"
+    a["variants"].each do |variant|
+      a['tags'] = a['tags'] + ', size:' + variant['option1'] if !variant['option1'].blank?
+    end
   end
   
 end

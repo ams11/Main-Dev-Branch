@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>currentDocument</key>
-	<string>config/merchant.yml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -11,8 +9,6 @@
 			<string>Gemfile</string>
 		</dict>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>config</string>
 			<key>regexFolderFilter</key>
@@ -21,6 +17,8 @@
 			<string>config</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>app</string>
 			<key>regexFolderFilter</key>
@@ -46,7 +44,7 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>347</integer>
+	<integer>217</integer>
 	<key>metaData</key>
 	<dict>
 		<key>app/controllers/sorders_controller.rb</key>
@@ -241,34 +239,6 @@
 				<integer>3</integer>
 			</dict>
 		</dict>
-		<key>config/merchant.yml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>229</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>202</integer>
-		</dict>
-		<key>public/stylesheets/kyllan.css</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>190</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>161</integer>
-		</dict>
 		<key>public/stylesheets/overrides-kyllan.css</key>
 		<dict>
 			<key>caret</key>
@@ -298,13 +268,9 @@
 			<integer>87</integer>
 		</dict>
 	</dict>
-	<key>openDocuments</key>
-	<array>
-		<string>config/merchant.yml</string>
-	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{470, 99}, {715, 655}}</string>
+	<string>{{257, 178}, {889, 791}}</string>
 </dict>
 </plist>
