@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 		@user.roles.push(:member)
 	end
     if @user.save
+      Sproduct.find_or_create_merchant_collection(@user.shopify_product_vendor) if !@user.shopify_product_vendor.blank?
       redirect_to root_url, :notice => "Sign Up successful."
     else
       render :action => 'new'
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
 		@user = current_user
 	end
     if @user.update_attributes(params[:user])
+      Sproduct.find_or_create_merchant_collection(@user.shopify_product_vendor) if !@user.shopify_product_vendor.blank?
       redirect_to root_url, :notice  => "Successfully updated profile."
     else
       render :action => 'edit'
@@ -52,10 +54,12 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    #FIX: delete vendor smart collection
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
   end
+  
 end

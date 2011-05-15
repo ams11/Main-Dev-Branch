@@ -311,3 +311,75 @@ ul#products li p del {
 #c1 .colors .silver {
 	background: url(colors.gif) no-repeat 0px -780px;
 }
+
+/* merchant additions */
+
+#c1 .store-id .IDimg {
+	float:left;
+	border:#e5e5e5 solid 1px;
+	display:block;
+	margin:0px 10px 10px 0px;
+}
+#c1 .store-id_BoxName {
+    display: block;
+    padding-bottom: 1px;
+    width: 190px;
+	font-size:11px;
+    word-wrap: break-word;
+}
+#c1 .ftlt { float:left; }
+#c1 .ftrt { float:right; }
+#c1 .mtm { margin-top:10px; }
+#c1 .mbm { margin-bottom:10px; }
+
+#c1 .uiSideNav ul {
+    display: none;
+}
+#c1 .uiSideNav .open ul {
+    display: block;
+}
+#c1 .uiSideNav li {
+    position: relative;
+}
+#c1 .uiSideNav .hidden {
+    display: none;
+}
+#c1 .uiSideNav .item, .uiSideNav .subitem {
+    border-bottom: 1px solid #FFFFFF;
+    color: #7e7e7e;
+    display: block;
+    line-height: 30px;
+	font-size:18px;
+    padding: 3px 8px 3px 37px;
+    position: relative;
+    text-decoration: none;
+}
+#c1 .uiSideNav .subitem {
+    padding-left: 37px;
+}
+#c1 .uiSideNav .item:hover, .uiSideNav .item:active, .uiSideNav .item:focus, .uiSideNav .subitem:hover, .uiSideNav .subitem:active, .uiSideNav .subitem:focus {
+    background-color: #d9efce;
+    text-decoration: none;
+}
+#c1 .uiSideNav .selectedItem .item, .uiSideNav .selectedItem .item:hover, .uiSideNav ul .selectedItem .subitem, .uiSideNav ul .selectedItem .subitem:hover {
+    background-color: #afdd97;
+	color:#000;
+    font-weight: bold;
+}
+#c1 .uiSideNav .imgWrap {
+    left: 10px;
+    position: absolute;
+    text-align: center;
+    top: 2px;
+    width: 23px;
+}
+#c1 .sideNav-icons {
+    background:url(profile-icons.png) no-repeat;
+    display: inline-block;
+    width: 23px;
+}
+#c1 .titleBar {
+	margin:15px 0px 22px;
+}
+
+

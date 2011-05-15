@@ -27,6 +27,14 @@ class Sproduct < ActiveRecord::Base
     end
   end
   
+  def self.find_or_create_merchant_collection(vendor)
+    if c = ShopifyAPI::SmartCollection.find(:all, :params => {:title => vendor}).size > 0
+      ShopifyAPI::SmartCollection.find(:all, :params => {:title => vendor}).first
+    else
+      ShopifyAPI::SmartCollection.create(:title => vendor, :rules => [ { :relation => "equals", :column => "vendor", :condition => vendor } ])
+    end
+  end
+  
   def initialize(attributes = {})
     @attributes = attributes
     super(attributes)

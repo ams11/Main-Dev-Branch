@@ -6,6 +6,13 @@
   $(function() {
     //alert('load');
     
+    var home = new String(window.location);
+    var isMerchant = !(home.match(/vendors/) == null);
+    
+    $('#pretendMerchant').click(function(e) {
+      $('.merchant').toggle();
+    });
+    
     $('#sizeFilter').hide();
     $('#sizeFilterLink').click(function(e) {
       e.preventDefault();
@@ -87,7 +94,9 @@
 
 
 <div>
+  <button id="pretendMerchant">Pretend I'm a Merchant</button>
   <!--
+  {{ "Merchant1" | link_to: collections["Merchant1"].url }} <br/>
   collection.products.size: {{ collection.products.size }} <br/>
   collection.all_products_count: {{ collection.all_products_count }} <br/>
   collection.tags: {{ collection.tags }} <br/>
@@ -106,6 +115,53 @@
 <div id="c1">
 
 <div id="sidenav-container">
+
+  <div class="merchant store-id clearfix">
+    <a href="#">
+      <img class="IDimg" src="{{ 'profile-img.gif' | asset_url }}" width="77" height="77" alt="user image" />
+    </a>
+    <div class="store-id_Content">
+      <img src="{{ 'stars.gif' | asset_url }}" width="82" height="13" alt="user rating" /><br />
+      Seller Feedback</div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="merchant">
+    <a href="#" class="store-id_BoxName">The Two's Company</a>
+    <span class="store-id_BoxName mbm">Seattle, WA</span>
+  </div>
+
+  <div class="merchant hr" style="margin:19px 0px 20px"></div>
+
+  <div class="merchant mainSideNav mtm">
+    <ul class="uiSideNav">
+      <li class="selectedItem">
+        <a href="#" class="item">
+          <span class="imgWrap"><i class="img sideNav-icons si-store"></i></span>
+          <span>Store</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="item">
+          <span class="imgWrap"><i class="img sideNav-icons si-profile"></i></span>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="item">
+          <span class="imgWrap"><i class="img sideNav-icons si-about"></i></span>
+          <span>About</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="item">
+          <span class="imgWrap"><i class="img sideNav-icons si-feedback"></i></span>
+          <span>Feedback</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
   <h4 class="widget-title">category name</h4>
 
   {% if collection.all_products_count > 0 %}
@@ -273,6 +329,17 @@
 </div>
 
 <div id="main-container">
+
+  <div class="merchant">
+    <img src="{{ 'merchant.jpeg' | asset_url }}" width="718" height="113" alt="store banner" />
+  </div>
+
+  <div class="merchant titleBar">
+    <div style="float:left">
+      <h2>The Two's Company Store</h2>
+    </div>
+    <div style="clear:both"></div>
+  </div>
 
   <div class="breadcrumb">
 
