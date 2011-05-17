@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110430000439) do
+ActiveRecord::Schema.define(:version => 20110516114636) do
 
   create_table "siteconfigs", :force => true do |t|
     t.string   "hero_title_1"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20110430000439) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "featured"
   end
 
   create_table "users", :force => true do |t|

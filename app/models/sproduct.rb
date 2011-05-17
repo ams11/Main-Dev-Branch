@@ -110,7 +110,7 @@ class Sproduct < ActiveRecord::Base
   end
   
   def add_tags_to_attributes!(a)
-    a['tags'] = "color:#{a['color']}, gender:#{a['gender']}, brand:#{a['brand']}, onsale:#{a['onsale']}, collectible:#{a['collectible']}, custom:#{a['custom']}"
+    a['tags'] = "color:#{a['color']}, gender:#{a['gender']}, brand:#{a['brand']}, onsale:#{a['onsale']}, collectible:#{a['collectible']}, custom:#{a['custom']}, featured:#{a['featured']}"
     a["variants"].each do |variant|
       a['tags'] = a['tags'] + ', size:' + variant['option1'] if !variant['option1'].blank?
     end

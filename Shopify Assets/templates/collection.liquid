@@ -6,13 +6,27 @@
   $(function() {
     //alert('load');
     
+    /*
     var home = new String(window.location);
     var isMerchant = !(home.match(/vendors/) == null);
     
     $('#pretendMerchant').click(function(e) {
       $('.merchant').toggle();
+      $('.notmerchant').toggle();
     });
+    */
     
+    /* only merchants will receive this message */
+    var isMerchant = false;
+		var parentUrl = decodeURIComponent( document.location.href.replace( /^.*\?parent=/,'' ) );
+		$.receiveMessage(function(e) {
+			//alert('child: receiveMessage: data = ' + e.data);
+			isMerchant = true;
+      $('.merchant').show();
+      $('.notmerchant').hide();
+		});
+		$.postMessage("send iframe size here", parentUrl, parent);
+		    
     $('#sizeFilter').hide();
     $('#sizeFilterLink').click(function(e) {
       e.preventDefault();
@@ -341,7 +355,7 @@
     <div style="clear:both"></div>
   </div>
 
-  <div class="breadcrumb">
+  <div class="notmerchant breadcrumb">
 
     {% if collection.title contains '-' %}
       {% capture typeCategory %}{{ collection.title | replace_first: '-', ' ' }}{% endcapture %}
@@ -354,7 +368,8 @@
     {% endif %}
   </div>
 
-  <div class="hr"></div>
+  <div class="notmerchant hr"></div>
+  
   <form id="form1" name="form1" method="post" action="">
     <div class="product-filters"><strong>Show only:</strong>
       <input type="radio" name="radioFilter" id="radio" value="onsale" />

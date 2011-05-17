@@ -1,0 +1,21 @@
+%h1 Listing storeconfigs
+
+%table
+  %tr
+    %th User
+    %th Display name
+    %th
+    %th
+    %th
+
+  - @storeconfigs.each do |storeconfig|
+    %tr
+      %td= storeconfig.user_id
+      %td= storeconfig.display_name
+      %td= link_to 'Show', storeconfig
+      %td= link_to 'Edit', edit_storeconfig_path(storeconfig)
+      %td= link_to 'Destroy', storeconfig, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Storeconfig', new_storeconfig_path

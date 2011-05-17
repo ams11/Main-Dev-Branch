@@ -1,4 +1,25 @@
+= javascript_include_tag "jquery.ba-postmessage.min"
+
+:javascript
+  var isMerchant = false;
+  
+-if current_user && has_role?(:merchant)
+  :javascript
+    isMerchant = true;
+    // set merchant data from controller here.  needs to be passed to child.
+
+:javascript
+  $(function() {
+    var childSrc = "http://soletron.myshopify.com/collections/#{@path}?parent=" + encodeURIComponent(document.location.href);
+    $("#innerFrame").attr("src", childSrc);
+    $.receiveMessage(function(e) {
+      //alert("resize iFrame here");
+      if (isMerchant) {
+        $.postMessage("merchant configuration goes here", childSrc, $("#innerFrame")[0].contentWindow);
+      }
+    });
+  });
 
 %div{:style => "width:980"}
-  %iframe{:src => "http://soletron.myshopify.com/collections/#{@path}", :scrolling => "no", :style => "width:980px; height:1200px; margin:0; padding:0; border:0"}
+  %iframe#innerFrame{:scrolling => "no", :style => "width:980px; height:1200px; margin:0; padding:0; border:0"}
   

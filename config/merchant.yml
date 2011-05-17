@@ -227,6 +227,9 @@ product_tags:
   custom:
   - False
   - True
+  featured:
+  - False
+  - True
 
 constraints:
   min_product_price: "0.00"

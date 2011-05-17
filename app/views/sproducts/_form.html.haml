@@ -166,6 +166,10 @@
         %td= f.select("custom", MERCHANT_CONFIG['product_tags']['custom'].collect {|x| [ x.to_s.capitalize, x ] })
     %tr
       .field
+        %td= f.label :featured
+        %td= f.select("featured", MERCHANT_CONFIG['product_tags']['featured'].collect {|x| [ x.to_s.capitalize, x ] })
+    %tr
+      .field
         %td= f.label :vendor
         %td= f.text_field :vendor, options = {:readonly => "readonly"}
     %tr

@@ -314,6 +314,10 @@ ul#products li p del {
 
 /* merchant additions */
 
+.merchant {
+	display:none;
+}
+
 #c1 .store-id .IDimg {
 	float:left;
 	border:#e5e5e5 solid 1px;

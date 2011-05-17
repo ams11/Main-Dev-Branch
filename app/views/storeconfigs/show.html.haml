@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @storeconfig.user_id
+%p
+  %b Display name:
+  = @storeconfig.display_name
+
+= link_to 'Edit', edit_storeconfig_path(@storeconfig)
+\|
+= link_to 'Back', storeconfigs_path

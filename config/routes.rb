@@ -1,5 +1,7 @@
 V2::Application.routes.draw do
 
+  resources :storeconfigs
+
   resources :siteconfig, :only => [:show, :edit, :update]
 
   resources :sorders do
